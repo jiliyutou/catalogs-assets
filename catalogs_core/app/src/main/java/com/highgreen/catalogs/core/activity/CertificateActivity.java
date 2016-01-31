@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,9 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +36,9 @@ import java.util.List;
  * Created by tihong on 16-1-24.
  */
 public class CertificateActivity extends Activity{
+
+    private final static String TAG = "CertificateActivity";
+    private final static String certificate_folder_name = "certificate";
 
     private ImageView back_arrow;
     private TextView middle_text_title;
@@ -56,8 +62,7 @@ public class CertificateActivity extends Activity{
 
         initUI();
         certificate_listView = (ListView) findViewById(R.id.certificate_list);
-        String certificate_path = MainApplication.ROOT_PATH +"Certificate/";
-        new GetCertificateTask().execute(certificate_path);
+        new GetCertificateTask().execute(certificate_folder_name);
     }
 
     private void initUI() {
@@ -91,13 +96,17 @@ public class CertificateActivity extends Activity{
         @Override
         protected List<String> doInBackground(String... params) {
 
-            List<UpYun.FolderItem> folderItemList = MainApplication.getUpYun().readDir(params[0]);
-
             List<String> urls = new ArrayList<String>();
-            if (folderItemList != null && folderItemList.size() > 0){
-                for (UpYun.FolderItem folderItem : folderItemList){
-                    urls.add(MainApplication.HTTP_PREFIX +"Certificate/"+folderItem.name);
+            try {
+                String[] paths = getAssets().list(params[0]);
+                List<String> list = new ArrayList<String>(Arrays.asList(paths));
+                for (String file : list){
+                    String url = "assets://"+params[0]+"/"+file;
+                    urls.add(url);
+                    Log.i(TAG, file);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             return urls;
