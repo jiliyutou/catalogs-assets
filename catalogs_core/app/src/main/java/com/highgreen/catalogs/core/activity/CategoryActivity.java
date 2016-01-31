@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.bean.Category;
 import com.highgreen.catalogs.core.bean.CategoryItem;
 import com.highgreen.catalogs.core.bean.CategoryItemAdpter;
 import com.highgreen.catalogs.core.json.JsonUtils;
@@ -150,8 +151,8 @@ public class CategoryActivity extends Activity {
 
             if (categoryString != null) {
                 Gson gson = new Gson();
-                categoryItemAdpterList = gson.fromJson(categoryString, new TypeToken<List<CategoryItemAdpter>>() {
-                }.getType());
+                Category category = gson.fromJson(categoryString, Category.class);
+                categoryItemAdpterList = category.getCategories();
             } else {
                 Toast.makeText(getApplicationContext(),"categories json is not exist or parse error ",Toast.LENGTH_SHORT);
             }
