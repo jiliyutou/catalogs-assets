@@ -14,17 +14,14 @@ import com.google.gson.Gson;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.highgreen.catalogs.core.json.JsonUtils;
 
 /**
  * Created by tihong on 16-1-24.
  */
 public class ContactActivity extends Activity {
 
-    private final static String CONTACT_PATH = "contact/contact.json";
+    private final static String CONTACT_PATH = "json/contact.json";
     private ImageView back_arrow;
     private TextView middle_text_title;
     private TextView left_back_title;
@@ -74,7 +71,7 @@ public class ContactActivity extends Activity {
         @Override
         protected String doInBackground(String... params) {
             String result = null;
-            result = getJson(params[0]);
+            result = JsonUtils.getJson(getApplicationContext(),params[0]);
             return result;
         }
 
@@ -101,20 +98,4 @@ public class ContactActivity extends Activity {
         // AnimateFirstDisplayListener.displayedImages.clear();
         super.onBackPressed();
     }
-
-    private String getJson(String fileName) {
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            BufferedReader bf = new BufferedReader(new InputStreamReader(
-                    getAssets().open(fileName)));
-            String line;
-            while ((line = bf.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return stringBuilder.toString();
-    }
-
 }

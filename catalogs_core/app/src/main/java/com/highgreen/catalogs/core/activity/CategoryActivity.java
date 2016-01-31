@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.highgreen.catalogs.core.R;
-import com.highgreen.catalogs.core.upyun.UpYun;
+import com.google.gson.reflect.TypeToken;
 import com.highgreen.catalogs.core.MainApplication;
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.CategoryItem;
+import com.highgreen.catalogs.core.bean.CategoryItemAdpter;
+import com.highgreen.catalogs.core.json.JsonUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -31,10 +32,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,6 +44,7 @@ public class CategoryActivity extends Activity {
 
     private final static String TAG = "CategoryActivity";
     private final static String thumbnail_folder_name = "thumbnail";
+    private final static String CONTACT_PATH = "json/categories.json";
 
     private List<CategoryItem> data = new ArrayList<CategoryItem>();
     private CategoryListAdapter adapter;
@@ -69,7 +68,7 @@ public class CategoryActivity extends Activity {
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .build();
-        new GetCategoryTask().execute(thumbnail_folder_name);
+        new GetCategoryTask().execute(thumbnail_folder_name, CONTACT_PATH);
     }
 
     private void initUI() {
@@ -130,6 +129,7 @@ public class CategoryActivity extends Activity {
             holder.number.setText("Number of products: " + getItem(position).getNumber());
             return convertView;
         }
+
         /**
          * ViewHolder类用保存item中的控件引用
          */
@@ -145,50 +145,37 @@ public class CategoryActivity extends Activity {
     private class GetCategoryTask extends AsyncTask<String, Void, List<CategoryItem>> {
         @Override
         protected List<CategoryItem> doInBackground(String... params) {
-            List<CategoryItem> categoryItemList = new ArrayList<CategoryItem>();
-            try {
-                String[] paths = getAssets().list(params[0]);
-                List<String> list = new ArrayList<String>(Arrays.asList(paths));
-                for (String file : list){
-                    CategoryItem categoryItem = new CategoryItem();
-                    String url = "assets://"+params[0]+"/"+file;
-                    categoryItem.setImageUrl(url);
-                    String title = file.split("\\.")[0];
-                    categoryItem.setTitle(title);
-                    title = title.replaceAll(" ", "_");
-                    Log.i(TAG, title);
-                    String httpHeader = MainApplication.HTTP_PREFIX + title + File.separator;
-                    String currentPath = MainApplication.ROOT_PATH + title;
-                    int number = 0;
-//                    List<UpYun.FolderItem> folderItemList= MainApplication.getUpYun().readDir(MainApplication.ROOT_PATH + title);
-//                    if (folderItemList !=null){
-//                        number = folderItemList.size();
-//                    }else {
-//                        Log.i(TAG,"folder: " + title + " is not exist.");
-//                    }
-                    categoryItem.setNumber(number);
-                    categoryItem.setHttpHeader(httpHeader);
-                    categoryItem.setCurrentPath(currentPath);
-                    categoryItemList.add(categoryItem);
 
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            List<CategoryItemAdpter> categoryItemAdpterList = new ArrayList<CategoryItemAdpter>();
+
+            String categoryString = JsonUtils.getJson(getApplicationContext(), params[1]);
+
+            if (categoryString != null) {
+                Gson gson = new Gson();
+                categoryItemAdpterList = gson.fromJson(categoryString, new TypeToken<List<CategoryItemAdpter>>() {
+                }.getType());
+            }else {
+                Toast.makeText(getApplicationContext(),"categories json is not exist or parse error ",Toast.LENGTH_SHORT);
             }
-//
-//            Gson gson = new Gson();
-//            String json = gson.toJson(categoryItemList);
-//            try {
-//                File path = Environment.getExternalStorageDirectory();
-//                File fileDir = new File(path,"test.json");
-//                FileWriter writer = new FileWriter(fileDir);
-//                writer.write(json);
-//                writer.close();
-//                Log.i(TAG,json);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//
-//            }
+
+            List<CategoryItem> categoryItemList = new ArrayList<CategoryItem>();
+
+            for (CategoryItemAdpter item : categoryItemAdpterList) {
+                CategoryItem categoryItem = new CategoryItem();
+                String url = "assets://" + params[0] + "/" + item.getThumbnail();
+                categoryItem.setImageUrl(url);
+                categoryItem.setTitle(item.getName());
+
+                String httpHeader = MainApplication.HTTP_PREFIX + item.getDirectory() + File.separator;
+                String currentPath = MainApplication.ROOT_PATH + item.getDirectory();
+
+                categoryItem.setNumber(item.getNumber());
+                categoryItem.setHttpHeader(httpHeader);
+                categoryItem.setCurrentPath(currentPath);
+                categoryItemList.add(categoryItem);
+            }
+
+
             return categoryItemList;
 
         }
@@ -232,7 +219,7 @@ public class CategoryActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-       // AnimateFirstDisplayListener.displayedImages.clear();
+        // AnimateFirstDisplayListener.displayedImages.clear();
         super.onBackPressed();
     }
 }
