@@ -53,7 +53,7 @@ public class LoginActivity extends Activity {
         List<LoginCodeItem> loginCodeItemList = MainApplication.getLoginCodes().getLogin_codes();
         for (LoginCodeItem code : loginCodeItemList){
             if (code.getCode().equals(password.trim())){
-                loginCodeItemList.remove(code);
+                code.setValid(false);
                 new VaildLoginCodeTask().execute();
                 return true;
             }
@@ -66,7 +66,8 @@ public class LoginActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             Gson gson = new Gson();
-            String json = gson.toJson(MainApplication.getLoginCodes().getLogin_codes());
+            String json = gson.toJson(MainApplication.getLoginCodes());
+            Log.i(TAG,json);
             MainApplication.getUpYun().writeFile(MainApplication.LOGIN_CODE_PATH,json.getBytes());
             Log.i(TAG, "VaildLoginCodeTask is succeed");
             return null;

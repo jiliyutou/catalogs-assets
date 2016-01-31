@@ -6,7 +6,7 @@ package com.highgreen.catalogs.core.bean;
 public class LoginCodeItem {
 
     private String code;
-    private boolean vaild;
+    private boolean valid;
 
     public String getCode() {
         return code;
@@ -16,11 +16,11 @@ public class LoginCodeItem {
         this.code = code;
     }
 
-    public boolean isVaild() {
-        return vaild;
+    public boolean isValid() {
+        return valid;
     }
 
-    public void setVaild(boolean vaild) {
-        this.vaild = vaild;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }
