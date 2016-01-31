@@ -2,3 +2,5 @@
 /catalogs_core/.gradle
 /catalogs_core/build
 /catalogs_core/app/build
+/catalogs_core/app/app.iml
+/catalogs_core/catalogs_core.iml
