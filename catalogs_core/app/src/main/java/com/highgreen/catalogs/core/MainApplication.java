@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.highgreen.catalogs.core.bean.LoginCodeItem;
 import com.highgreen.catalogs.core.bean.LoginCodes;
 import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
@@ -21,15 +19,14 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
+
 
 /**
  * Created by ruantihong on 1/19/16.
  */
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
-    private static final String password = "123456";
+    private static final String password = "androidadmin";
 
     public final static String SERVER_NAME = "catalog-assets";
     public final static String OPERATOR_NAME = "androidadmin";

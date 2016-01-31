@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.highgreen.catalogs.core.MainApplication;
@@ -41,7 +42,7 @@ public class LoginActivity extends Activity {
                 EditText passwordEditText = (EditText) findViewById(R.id.passwordEditText);
                 String password = passwordEditText.getText().toString().trim();
                 if (!(UserSharedPreference.getPassword(mContext).equals(password)||isCodeVaild(password))) {
-                    findViewById(R.id.errorTextView).setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),R.string.error_code,Toast.LENGTH_SHORT).show();
                 }else{
                     finish();
                 }
