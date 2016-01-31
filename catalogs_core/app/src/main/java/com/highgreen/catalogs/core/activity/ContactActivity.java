@@ -11,21 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by tihong on 16-1-24.
  */
 public class ContactActivity extends Activity {
 
-    private final static String CONTACT_PATH = "Contact/contact.json";
+    private final static String CONTACT_PATH = "contact/contact.json";
     private ImageView back_arrow;
     private TextView middle_text_title;
     private TextView left_back_title;
@@ -42,8 +41,7 @@ public class ContactActivity extends Activity {
 
         initUI();
         contanct_listView = (ListView) findViewById(R.id.contact_list);
-        String contact_path = MainApplication.ROOT_PATH + CONTACT_PATH;
-        new GetContactTask().execute(contact_path);
+        new GetContactTask().execute(CONTACT_PATH);
     }
 
     private void initUI() {
@@ -76,25 +74,7 @@ public class ContactActivity extends Activity {
         @Override
         protected String doInBackground(String... params) {
             String result = null;
-//            result = MainApplication.getUpYun().readFile(params[0]);
-//            Gson gson = new Gson();
-//            UpYunHttpResponse response = gson.fromJson(result, UpYunHttpResponse.class);
-//            if (response != null && response.getCode() == 40400001) {
-//                return null;
-//            }
-
-            OkHttpClient client = new OkHttpClient();
-
-            String url = "http://catalog-assets.b0.upaiyun.com/006_test/Contact/contact.json";
-            Request request = new Request.Builder().url(url).build();
-            com.squareup.okhttp.Response response = null;
-            try {
-                response = client.newCall(request).execute();
-                result = response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            result = getJson(params[0]);
             return result;
         }
 
@@ -108,7 +88,7 @@ public class ContactActivity extends Activity {
                 company_address = (TextView) findViewById(R.id.company_address);
                 company_address.setText(contactInfo.getAddress());
                 contanct_listView = (ListView) findViewById(R.id.contact_list);
-                contanct_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPersonInfo()));
+                contanct_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPerson()));
             } else {
                 Toast.makeText(ContactActivity.this, "Load contact.json failed", Toast.LENGTH_LONG).show();
             }
@@ -120,6 +100,21 @@ public class ContactActivity extends Activity {
     public void onBackPressed() {
         // AnimateFirstDisplayListener.displayedImages.clear();
         super.onBackPressed();
+    }
+
+    private String getJson(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader bf = new BufferedReader(new InputStreamReader(
+                    getAssets().open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
     }
 
 }

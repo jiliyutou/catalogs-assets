@@ -29,7 +29,7 @@ public class MainApplication extends Application {
     public final static String OPERATOR_PASSWORD = "androidadmin";
     public final static String HTTP_HEADER = "http://";
     public final static String HOST = ".b0.upaiyun.com";
-    public final static String ROOT_PATH = "/006_test/";
+    public final static String ROOT_PATH = "/004_meiya/";
 
     public final static String HTTP_PREFIX = HTTP_HEADER + SERVER_NAME + HOST + ROOT_PATH;
     public static int screen_width;

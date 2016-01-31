@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by ruantihong on 1/27/16.
  */
-public class PersonInfo {
+public class Person {
     private String name;
     private List<ParamKVPair> contacts;
 

@@ -10,18 +10,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.highgreen.catalogs.core.R;
-import com.highgreen.catalogs.core.bean.PersonInfo;
+import com.highgreen.catalogs.core.bean.Person;
 
 import java.util.List;
 
 /**
  * Created by ruantihong on 1/27/16.
  */
-public class PersonAdapter extends ArrayAdapter<PersonInfo> {
+public class PersonAdapter extends ArrayAdapter<Person> {
 
     private ViewHolder holder = null;
 
-    public PersonAdapter(Context context, int resource, List<PersonInfo> data) {
+    public PersonAdapter(Context context, int resource, List<Person> data) {
         super(context, resource, data);
     }
 
@@ -38,9 +38,9 @@ public class PersonAdapter extends ArrayAdapter<PersonInfo> {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        PersonInfo personInfo = getItem(position);
-        holder.person_name.setText(personInfo.getName());
-        ContactItemAdapter contactItemAdapter = new ContactItemAdapter(getContext(), 0, personInfo.getContacts());
+        Person person = getItem(position);
+        holder.person_name.setText(person.getName());
+        ContactItemAdapter contactItemAdapter = new ContactItemAdapter(getContext(), 0, person.getContacts());
         holder.contactsListView.setAdapter(contactItemAdapter);
         setListViewHeightBasedOnChildren(holder.contactsListView);
         return convertView;
