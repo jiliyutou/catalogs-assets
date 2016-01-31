@@ -9,14 +9,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.meiya.simon.R;
+
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 
 public class CatalogsActivity extends Activity {
 
     private Button mLanguageButton;
     private Context mContext;
-    private TextView mProdcutListTextView;
+    private TextView mProductListTextView;
     private TextView mCompanyProfileTextView;
     private TextView mContactInformationTextView;
     private TextView mFavoritesTextView;
@@ -49,13 +50,13 @@ public class CatalogsActivity extends Activity {
 
     private void initUI() {
 
-        mProdcutListTextView = (TextView) findViewById(R.id.product_list);
+        mProductListTextView = (TextView) findViewById(R.id.product_list);
         mCompanyProfileTextView = (TextView) findViewById(R.id.company_profile);
         mContactInformationTextView = (TextView) findViewById(R.id.contact_information);
         mFavoritesTextView = (TextView) findViewById(R.id.favorites);
         mProductCertificateTextView = (TextView) findViewById(R.id.product_certificate);
 
-        mProdcutListTextView.setOnClickListener(new View.OnClickListener() {
+        mProductListTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent category = new Intent(CatalogsActivity.this, CategoryActivity.class);
@@ -68,7 +69,6 @@ public class CatalogsActivity extends Activity {
             public void onClick(View v) {
                 Intent companyProfile = new Intent(CatalogsActivity.this, CompanyProfileActivity.class);
                 startActivity(companyProfile);
-
             }
         });
 
@@ -105,14 +105,14 @@ public class CatalogsActivity extends Activity {
                 String text = (String) mLanguageButton.getText();
                 if (getResources().getString(R.string.cn_language).trim().equals(text.trim())) {
                     mLanguageButton.setText(R.string.en_language);
-                    mProdcutListTextView.setText(R.string.en_product_list);
+                    mProductListTextView.setText(R.string.en_product_list);
                     mCompanyProfileTextView.setText(R.string.en_company_profile);
                     mContactInformationTextView.setText(R.string.en_contact_information);
                     mFavoritesTextView.setText(R.string.en_favorites);
                     mProductCertificateTextView.setText(R.string.en_product_certificate);
                 } else {
                     mLanguageButton.setText(R.string.cn_language);
-                    mProdcutListTextView.setText(R.string.cn_product_list);
+                    mProductListTextView.setText(R.string.cn_product_list);
                     mCompanyProfileTextView.setText(R.string.cn_company_profile);
                     mContactInformationTextView.setText(R.string.cn_contact_information);
                     mFavoritesTextView.setText(R.string.cn_favorites);
@@ -122,6 +122,5 @@ public class CatalogsActivity extends Activity {
             }
         });
     }
-
 
 }

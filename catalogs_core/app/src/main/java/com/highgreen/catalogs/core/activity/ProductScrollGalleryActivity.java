@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.bean.ProductItem;
-import com.highgreen.catalogs.core.utils.UpYun;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.upyun.UpYun;
+import com.highgreen.catalogs.core.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -23,6 +23,9 @@ import java.util.List;
 
 /**
  * Created by ruantihong on 1/22/16.
+ */
+/**
+ * Not used yet
  */
 public class ProductScrollGalleryActivity extends FragmentActivity {
 

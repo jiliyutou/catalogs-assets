@@ -9,14 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.highgreen.catalogs.core.MainApplication;
-import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.bean.ProductItem;
+import com.highgreen.catalogs.core.upyun.UpYun;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -32,36 +34,52 @@ import java.util.List;
 /**
  * Created by tihong on 16-1-24.
  */
-public class CertificateActivity extends Activity{
+/**
+ * Not used yet
+ */
+public class ProductGalleryActivity extends Activity {
 
+    private DisplayImageOptions options;
+    private List<ProductItem> data = new ArrayList<ProductItem>();
+    private ProductGalleryAdapter productGalleryAdapter;
     private ImageView back_arrow;
     private TextView middle_text_title;
     private TextView left_back_title;
-    private ListView certificate_listView;
-    private DisplayImageOptions options;
+    private Gallery gallery;
+
+    private String title;
+    private String currentPath;
+    private String httpHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.certificate_activity);
+        setContentView(R.layout.product_gallery_activity);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
+
         options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisc(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
+                .cacheInMemory(false)
+                .cacheOnDisc(false)
                 .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
 
-        initUI();
-        certificate_listView = (ListView) findViewById(R.id.certificate_list);
-        String certificate_path = MainApplication.ROOT_PATH +"Certificate/";
-        new GetCertificateTask().execute(certificate_path);
+        gallery = (Gallery) findViewById(R.id.gallery);
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        title = bundle.getString("title");
+        currentPath = bundle.getString("currentPath");
+        httpHeader = bundle.getString("httpHeader");
+        initUI(title);
+
+        new GetProductTask().execute(currentPath, title, httpHeader);
     }
 
-    private void initUI() {
-
+    private void initUI(String title) {
         back_arrow = (ImageView) findViewById(R.id.back_arrow);
         back_arrow.setVisibility(View.VISIBLE);
         back_arrow.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +90,7 @@ public class CertificateActivity extends Activity{
         });
         left_back_title = (TextView) findViewById(R.id.left_back_title);
         left_back_title.setVisibility(View.VISIBLE);
-        left_back_title.setText(R.string.app_name);
+        left_back_title.setText("Categories");
 
         left_back_title.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,38 +101,16 @@ public class CertificateActivity extends Activity{
 
         middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setVisibility(View.VISIBLE);
-        middle_text_title.setText(R.string.cn_product_certificate);
+        middle_text_title.setText(title);
     }
 
-    private class GetCertificateTask extends AsyncTask<String, Void, List<String>>{
 
-        @Override
-        protected List<String> doInBackground(String... params) {
-
-            List<UpYun.FolderItem> folderItemList = MainApplication.getUpYun().readDir(params[0]);
-
-            List<String> urls = new ArrayList<String>();
-            if (folderItemList != null && folderItemList.size() > 0){
-                for (UpYun.FolderItem folderItem : folderItemList){
-                    urls.add(MainApplication.HTTP_PREFIX +"Certificate/"+folderItem.name);
-                }
-            }
-
-            return urls;
-        }
-
-        @Override
-        protected void onPostExecute(List<String> urls) {
-            certificate_listView.setAdapter(new ImageListViewAdapter(CertificateActivity.this, R.layout.certificate_item, urls));
-        }
-    }
-
-    public class ImageListViewAdapter extends ArrayAdapter<String> {
+    public class ProductGalleryAdapter extends ArrayAdapter<ProductItem> {
         private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
         private Context mContext;
         private int resource;
 
-        public ImageListViewAdapter(Context context, int resource, List<String> data) {
+        public ProductGalleryAdapter(Context context, int resource, List<ProductItem> data) {
             super(context, resource, data);
             this.mContext = context;
             this.resource = resource;
@@ -127,7 +123,7 @@ public class CertificateActivity extends Activity{
             if (convertView == null) {
                 holder = new ViewHolder();
                 convertView = LayoutInflater.from(mContext).inflate(resource, null);
-                holder.image = (ImageView) convertView.findViewById(R.id.certificate_image);
+                holder.image = (ImageView) convertView.findViewById(R.id.gallery_image);
 
                 convertView.setTag(holder);
             } else {
@@ -135,7 +131,7 @@ public class CertificateActivity extends Activity{
             }
 
             ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.displayImage(getItem(position), holder.image, options);
+            imageLoader.displayImage(getItem(position).getImageUrl(), holder.image, options);
             return convertView;
         }
 
@@ -170,4 +166,52 @@ public class CertificateActivity extends Activity{
         super.onBackPressed();
     }
 
+    private class GetProductTask extends AsyncTask<String, Void, List<ProductItem>> {
+        @Override
+        protected List<ProductItem> doInBackground(String... params) {
+
+            List<UpYun.FolderItem> folderItemList = MainApplication.getUpYun().readDir(params[0]);
+            List<ProductItem> productItemList = new ArrayList<ProductItem>();
+
+            if (folderItemList != null && folderItemList.size() > 1) {
+                for (UpYun.FolderItem item : folderItemList) {
+                    System.out.println(item);
+                    String name = item.name.split("\\.")[0];
+                    if (!params[1].equals(name)) {
+                        String url = params[2] + item.name;
+                        System.out.println(url);
+                        ProductItem productItem = new ProductItem();
+                        productItem.setImageUrl(url);
+                        productItem.setTitle(name);
+                        productItemList.add(productItem);
+                    }
+                }
+            }
+            return productItemList;
+        }
+
+        @Override
+        protected void onPostExecute(List<ProductItem> productItems) {
+            super.onPostExecute(productItems);
+            data = productItems;
+            productGalleryAdapter = new ProductGalleryAdapter(ProductGalleryActivity.this, R.layout.product_gallery_item, data);
+            if (productGalleryAdapter == null) {
+                System.out.println("productGalleryAdapter is null");
+            }
+            gallery.setAdapter(productGalleryAdapter);
+
+            gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    ProductItem item = data.get(position);
+//                    Intent intent = new Intent(ProductGridActivity.this, ProductScrollGalleryActivity.class);
+//                    intent.putExtra("title", title);
+//                    intent.putExtra("item_name",item.getTitle());
+//                    intent.putExtra("currentPath", currentPath);
+//                    intent.putExtra("httpHeader",httpHeader);
+//                    startActivity(intent);
+                }
+            });
+        }
+    }
 }

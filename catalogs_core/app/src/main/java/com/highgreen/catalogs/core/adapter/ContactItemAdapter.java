@@ -7,17 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.meiya.simon.R;
-import com.highgreen.catalogs.core.bean.ContactItem;
+import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.bean.ParamKVPair;
 
 import java.util.List;
 
 /**
  * Created by ruantihong on 1/27/16.
  */
-public class ContactItemAdapter extends ArrayAdapter<ContactItem> {
+public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
 
-    public ContactItemAdapter(Context context, int resource, List<ContactItem> data) {
+    public ContactItemAdapter(Context context, int resource, List<ParamKVPair> data) {
         super(context, resource, data);
     }
 
@@ -36,7 +36,7 @@ public class ContactItemAdapter extends ArrayAdapter<ContactItem> {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        ContactItem item = getItem(position);
+        ParamKVPair item = getItem(position);
         holder.name.setText(item.getParamKey()+" : ");
         holder.value.setText(item.getParamValue());
 

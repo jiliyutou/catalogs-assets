@@ -17,7 +17,6 @@ public class UpYunHttpResponse {
     }
 
     public int getCode() {
-
         return code;
     }
 

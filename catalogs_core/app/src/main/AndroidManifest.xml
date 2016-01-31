@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.meiya.simon" >
+    package="com.highgreen.catalogs.core" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -17,7 +17,6 @@
         <activity android:name="com.highgreen.catalogs.core.activity.CatalogsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,26 +25,27 @@
 
         <activity android:name="com.highgreen.catalogs.core.activity.CategoryActivity" />
 
-        <activity android:name="com.highgreen.catalogs.core.activity.ProductScrollGalleryActivity"/>
-        
         <activity android:name="com.highgreen.catalogs.core.activity.ProductGridActivity"/>
 
-        <activity android:name="com.highgreen.catalogs.core.activity.ProductGalleryAcitivty"/>
+        <!-- not used yet -->
+        <activity android:name="com.highgreen.catalogs.core.activity.ProductScrollGalleryActivity"/>
+
+        <!-- not used yet -->
+        <activity android:name="com.highgreen.catalogs.core.activity.ProductGalleryActivity"/>
 
         <activity android:name="com.highgreen.catalogs.core.activity.ProductCoverFlowActivity"/>
 
-        <activity android:name="com.highgreen.catalogs.core.activity.CertificateActivity"/>
-
-        <activity android:name="com.highgreen.catalogs.core.activity.ContactActivity"/>
-
-        <activity android:name="com.highgreen.catalogs.core.activity.FavoritesGridActivity"/>
+        <activity android:name="com.highgreen.catalogs.core.activity.ProductImageViewActivity"/>
 
         <activity android:name="com.highgreen.catalogs.core.activity.CompanyProfileActivity"/>
 
-        <activity android:name="com.highgreen.catalogs.core.activity.ProductImageViewActivity"/>
+        <activity android:name="com.highgreen.catalogs.core.activity.ContactActivity"/>
+
+        <activity android:name="com.highgreen.catalogs.core.activity.CertificateActivity"/>
+
+        <activity android:name="com.highgreen.catalogs.core.activity.FavoritesGridActivity"/>
 
         <activity android:name="com.highgreen.catalogs.core.activity.FavoritesCoverFlowActivity"/>
 
     </application>
-
 </manifest>

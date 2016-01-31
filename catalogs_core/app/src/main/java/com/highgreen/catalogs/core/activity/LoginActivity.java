@@ -8,7 +8,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 
 /**

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.highgreen.catalogs.core.utils.UpYun;
+import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -22,20 +22,20 @@ import java.io.File;
  */
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
-    private static Context mContext = null;
     private static final String password = "123456";
 
-    public final static String SERVERNAME = "catalog-assets";
-    public final static String OPERATORNAME = "androidadmin";
-    public final static String OPERATORPASSWORD = "androidadmin";
-
-    public final static String HTTPHEADER = "http://";
-    public final static String ROOTPATH = "/006_test/";
+    public final static String SERVER_NAME = "catalog-assets";
+    public final static String OPERATOR_NAME = "androidadmin";
+    public final static String OPERATOR_PASSWORD = "androidadmin";
+    public final static String HTTP_HEADER = "http://";
     public final static String HOST = ".b0.upaiyun.com";
-    public final static String HTTPPREFIX = HTTPHEADER + SERVERNAME + HOST + ROOTPATH;
+    public final static String ROOT_PATH = "/006_test/";
+
+    public final static String HTTP_PREFIX = HTTP_HEADER + SERVER_NAME + HOST + ROOT_PATH;
     public static int screen_width;
     public static int screen_height;
 
+    private static Context mContext = null;
     private static UpYun upYun = null;
 
     @Override
@@ -60,22 +60,11 @@ public class MainApplication extends Application {
         screen_height = wm.getDefaultDisplay().getHeight();
 
         Log.i(TAG,"screen_width : " + screen_width + ", screen_height : " + screen_height);
-        
     }
 
     private void initUpYun() {
-        /**
-         * 初始化UpYun
-         * UpYun upyun = new UpYun("空间名称", "操作员名称", "操作员密码");
-         */
-        upYun = new UpYun(SERVERNAME, OPERATORNAME, OPERATORPASSWORD);
-        /**
-         * 是否开启debug模式，默认不开启
-         */
+        upYun = new UpYun(SERVER_NAME, OPERATOR_NAME, OPERATOR_PASSWORD);
         upYun.setDebug(true);
-        /**
-         * 手动设置超时时间：默认为30秒
-         */
         upYun.setTimeout(60);
         /**
          * 选择最优的接入点

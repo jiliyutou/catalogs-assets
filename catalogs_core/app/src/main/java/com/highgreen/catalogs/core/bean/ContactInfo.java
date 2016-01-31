@@ -9,7 +9,7 @@ public class ContactInfo {
     private String website;
     private String address;
 
-    private List<PersonInfo> personInfos;
+    private List<PersonInfo> personInfo;
 
     public String getWebsite() {
         return website;
@@ -27,11 +27,11 @@ public class ContactInfo {
         this.address = address;
     }
 
-    public List<PersonInfo> getPersonInfos() {
-        return personInfos;
+    public List<PersonInfo> getPersonInfo() {
+        return personInfo;
     }
 
-    public void setPersonInfos(List<PersonInfo> personInfos) {
-        this.personInfos = personInfos;
+    public void setPersonInfo(List<PersonInfo> personInfo) {
+        this.personInfo = personInfo;
     }
 }

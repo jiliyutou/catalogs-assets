@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.highgreen.catalogs.core.adapter.ProductGridAdapter;
 import com.highgreen.catalogs.core.bean.ProductItem;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.database.DataBaseManager;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by tihong on 16-1-24.
  */
-public class ProductItem implements Serializable{
+public class ProductItem implements Serializable {
     private String imageUrl;
     private String title;
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.highgreen.catalogs.core.bean.ProductItem;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import uk.co.senab.photoview.PhotoViewAttacher;

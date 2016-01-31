@@ -16,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.highgreen.catalogs.core.utils.UpYun;
+import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.MainApplication;
-import com.meiya.simon.R;
 import com.highgreen.catalogs.core.bean.CategoryItem;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -44,8 +44,6 @@ public class CategoryActivity extends Activity {
     private ImageView back_arrow;
     private TextView middle_text_title;
     private TextView left_back_title;
-
-
     private DisplayImageOptions options;
 
     @Override
@@ -62,7 +60,7 @@ public class CategoryActivity extends Activity {
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .build();
-        new GetCategoryTask().execute(MainApplication.ROOTPATH);
+        new GetCategoryTask().execute(MainApplication.ROOT_PATH);
     }
 
     private void initUI() {
@@ -86,9 +84,8 @@ public class CategoryActivity extends Activity {
         });
 
         middle_text_title = (TextView) findViewById(R.id.middle_text_title);
-        middle_text_title.setText("Categories");
+        middle_text_title.setText(R.string.category_title);
     }
-
 
     public class CategoryListAdapter extends ArrayAdapter<CategoryItem> {
 
@@ -149,7 +146,7 @@ public class CategoryActivity extends Activity {
                             &&folderItem.type.equals("Folder")){
                         System.out.println(folderItem);
                         CategoryItem categoryItem = new CategoryItem();
-                        String httpHeader = MainApplication.HTTPPREFIX + folderItem.name + File.separator;
+                        String httpHeader = MainApplication.HTTP_PREFIX + folderItem.name + File.separator;
                         String currentPath = params[0] + folderItem.name;
                         String url = httpHeader + folderItem.name + ".jpg";
                         categoryItem.setImageUrl(url);

@@ -20,5 +20,9 @@
     <string name="login_hint">enter code</string>
     <string name="error_code">Wrong code. Please try again</string>
     <string name="no_favorite">nothing favorite</string>
+
+    <string name="category_title">Categories</string>
+
+
 </resources>
 

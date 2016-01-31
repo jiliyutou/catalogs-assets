@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.listener.AnimateFirstDisplayListener;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;

@@ -7,7 +7,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 
 /**
  * Created by tihong on 16-1-24.

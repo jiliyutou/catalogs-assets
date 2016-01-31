@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.highgreen.catalogs.core.bean.ProductItem;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.CoverFlowAdapter;
 import com.highgreen.catalogs.core.database.DataBaseManager;
 import com.nostra13.universalimageloader.core.ImageLoader;

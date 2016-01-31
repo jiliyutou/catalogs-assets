@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.highgreen.catalogs.core.MainApplication;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
 import com.squareup.okhttp.OkHttpClient;
@@ -42,7 +42,7 @@ public class ContactActivity extends Activity {
 
         initUI();
         contanct_listView = (ListView) findViewById(R.id.contact_list);
-        String contact_path = MainApplication.ROOTPATH + CONTACT_PATH;
+        String contact_path = MainApplication.ROOT_PATH + CONTACT_PATH;
         new GetContactTask().execute(contact_path);
     }
 
@@ -108,7 +108,7 @@ public class ContactActivity extends Activity {
                 company_address = (TextView) findViewById(R.id.company_address);
                 company_address.setText(contactInfo.getAddress());
                 contanct_listView = (ListView) findViewById(R.id.contact_list);
-                contanct_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPersonInfos()));
+                contanct_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPersonInfo()));
             } else {
                 Toast.makeText(ContactActivity.this, "Load contact.json failed", Toast.LENGTH_LONG).show();
             }

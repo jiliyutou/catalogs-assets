@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.adapter.ProductGridAdapter;
 import com.highgreen.catalogs.core.bean.ProductItem;
-import com.highgreen.catalogs.core.utils.UpYun;
-import com.meiya.simon.R;
+import com.highgreen.catalogs.core.upyun.UpYun;
+import com.highgreen.catalogs.core.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

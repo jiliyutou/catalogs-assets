@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class PersonInfo {
     private String name;
-    private List<ContactItem> contacts;
+    private List<ParamKVPair> contacts;
 
     public String getName() {
         return name;
@@ -17,11 +17,11 @@ public class PersonInfo {
         this.name = name;
     }
 
-    public List<ContactItem> getContacts() {
+    public List<ParamKVPair> getContacts() {
         return contacts;
     }
 
-    public void setContacts(List<ContactItem> contacts) {
+    public void setContacts(List<ParamKVPair> contacts) {
         this.contacts = contacts;
     }
 }
