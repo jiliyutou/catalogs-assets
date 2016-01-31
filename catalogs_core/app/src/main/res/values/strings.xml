@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meiya</string>
+    <string name="cn_language">语言</string>
+    <string name="cn_product_list">产品目录</string>
+    <string name="cn_company_profile">公司介绍</string>
+    <string name="cn_contact_information">联系方式</string>
+    <string name="cn_favorites">收藏夹</string>
+    <string name="cn_product_certificate">产品证书</string>
+
+    <string name="en_language">LANGUAGE</string>
+    <string name="en_product_list">PRODUCTS</string>
+    <string name="en_company_profile">COMPANY</string>
+    <string name="en_contact_information">CONTACTS</string>
+    <string name="en_favorites">FAVORITES</string>
+    <string name="en_product_certificate">CERTIFICATES</string>
+
+    <string name="en_back">Back</string>
+    <string name="login">Login</string>
+    <string name="login_hint">enter code</string>
+    <string name="error_code">Wrong code. Please try again</string>
+    <string name="no_favorite">nothing favorite</string>
+</resources>
+

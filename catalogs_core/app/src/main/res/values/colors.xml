@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="grey">#FF999999</color>
+    <color name="float_grey">#e0ffffff</color>
+    <color name="company_info_text_color">#ffc8c8c8</color>
+    <color name="spilt_line_color">#ffc8c8c8</color>
+
+    <color name="bg_enable">#fff6f7f9</color>
+    <color name="bg_disable">#ffaeaeae</color>
+    <color name="color_window_bg">#ff2c2f35</color>
+</resources>
