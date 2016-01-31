@@ -22,9 +22,6 @@ import com.highgreen.catalogs.core.json.JsonUtils;
 public class ContactActivity extends Activity {
 
     private final static String CONTACT_PATH = "json/contact.json";
-    private ImageView back_arrow;
-    private TextView middle_text_title;
-    private TextView left_back_title;
     private ListView contanct_listView;
     private TextView company_website;
     private TextView company_address;
@@ -42,7 +39,7 @@ public class ContactActivity extends Activity {
     }
 
     private void initUI() {
-        back_arrow = (ImageView) findViewById(R.id.back_arrow);
+        ImageView back_arrow = (ImageView) findViewById(R.id.back_arrow);
         back_arrow.setVisibility(View.VISIBLE);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +47,7 @@ public class ContactActivity extends Activity {
                 onBackPressed();
             }
         });
-        left_back_title = (TextView) findViewById(R.id.left_back_title);
+        TextView left_back_title = (TextView) findViewById(R.id.left_back_title);
         left_back_title.setVisibility(View.VISIBLE);
         left_back_title.setText(R.string.app_name);
 
@@ -61,7 +58,7 @@ public class ContactActivity extends Activity {
             }
         });
 
-        middle_text_title = (TextView) findViewById(R.id.middle_text_title);
+        TextView middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setVisibility(View.VISIBLE);
         middle_text_title.setText(R.string.cn_contact_information);
     }

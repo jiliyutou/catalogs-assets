@@ -49,9 +49,6 @@ public class CategoryActivity extends Activity {
     private List<CategoryItem> data = new ArrayList<CategoryItem>();
     private CategoryListAdapter adapter;
     private ListView listView;
-    private ImageView back_arrow;
-    private TextView middle_text_title;
-    private TextView left_back_title;
     private DisplayImageOptions options;
 
     @Override
@@ -73,7 +70,7 @@ public class CategoryActivity extends Activity {
 
     private void initUI() {
         //hide language button
-        back_arrow = (ImageView) findViewById(R.id.back_arrow);
+        ImageView back_arrow = (ImageView) findViewById(R.id.back_arrow);
         back_arrow.setVisibility(View.VISIBLE);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,8 @@ public class CategoryActivity extends Activity {
                 onBackPressed();
             }
         });
-        left_back_title = (TextView) findViewById(R.id.left_back_title);
+
+        TextView left_back_title = (TextView) findViewById(R.id.left_back_title);
         left_back_title.setVisibility(View.VISIBLE);
 
         left_back_title.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +89,7 @@ public class CategoryActivity extends Activity {
             }
         });
 
-        middle_text_title = (TextView) findViewById(R.id.middle_text_title);
+        TextView middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setText(R.string.category_title);
     }
 
@@ -154,7 +152,7 @@ public class CategoryActivity extends Activity {
                 Gson gson = new Gson();
                 categoryItemAdpterList = gson.fromJson(categoryString, new TypeToken<List<CategoryItemAdpter>>() {
                 }.getType());
-            }else {
+            } else {
                 Toast.makeText(getApplicationContext(),"categories json is not exist or parse error ",Toast.LENGTH_SHORT);
             }
 

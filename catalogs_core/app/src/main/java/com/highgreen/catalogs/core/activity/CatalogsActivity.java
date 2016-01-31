@@ -30,11 +30,6 @@ public class CatalogsActivity extends Activity {
         setContentView(R.layout.catalogs_activity);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
         mContext = this;
-        if (!UserSharedPreference.getLoginOnce(mContext)) {
-            UserSharedPreference.updateLoginOnce(mContext, true);
-            Intent intent = new Intent(CatalogsActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
         initUI();
     }
 
@@ -42,7 +37,6 @@ public class CatalogsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (!UserSharedPreference.getLoginOnce(mContext)) {
-            UserSharedPreference.updateLoginOnce(mContext, true);
             Intent intent = new Intent(CatalogsActivity.this, LoginActivity.class);
             startActivity(intent);
         }

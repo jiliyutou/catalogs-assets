@@ -40,9 +40,6 @@ public class CertificateActivity extends Activity{
     private final static String TAG = "CertificateActivity";
     private final static String certificate_folder_name = "certificate";
 
-    private ImageView back_arrow;
-    private TextView middle_text_title;
-    private TextView left_back_title;
     private ListView certificate_listView;
     private DisplayImageOptions options;
 
@@ -67,7 +64,7 @@ public class CertificateActivity extends Activity{
 
     private void initUI() {
 
-        back_arrow = (ImageView) findViewById(R.id.back_arrow);
+        ImageView back_arrow = (ImageView) findViewById(R.id.back_arrow);
         back_arrow.setVisibility(View.VISIBLE);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +72,7 @@ public class CertificateActivity extends Activity{
                 onBackPressed();
             }
         });
-        left_back_title = (TextView) findViewById(R.id.left_back_title);
+        TextView left_back_title = (TextView) findViewById(R.id.left_back_title);
         left_back_title.setVisibility(View.VISIBLE);
         left_back_title.setText(R.string.app_name);
 
@@ -86,7 +83,7 @@ public class CertificateActivity extends Activity{
             }
         });
 
-        middle_text_title = (TextView) findViewById(R.id.middle_text_title);
+        TextView middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setVisibility(View.VISIBLE);
         middle_text_title.setText(R.string.cn_product_certificate);
     }

@@ -44,6 +44,7 @@ public class LoginActivity extends Activity {
                 if (!(UserSharedPreference.getPassword(mContext).equals(password)||isCodeVaild(password))) {
                     Toast.makeText(getApplicationContext(),R.string.error_code,Toast.LENGTH_SHORT).show();
                 }else{
+                    UserSharedPreference.updateLoginOnce(mContext,true);
                     finish();
                 }
             }

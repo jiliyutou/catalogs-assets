@@ -15,9 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.CoverFlowAdapter;
+import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.database.DataBaseManager;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -30,10 +30,6 @@ import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
  * Created by ruantihong on 1/22/16.
  */
 public class FavoritesCoverFlowActivity extends FragmentActivity {
-
-    private ImageView back_arrow;
-    private TextView middle_text_title;
-    private TextView left_back_title;
 
     private FeatureCoverFlow mCoverFlow;
     private ProductItem productItem;
@@ -53,7 +49,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         mDataBaseManager = new DataBaseManager(getApplicationContext());
 
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
-        productItem =  (ProductItem) getIntent().getSerializableExtra("productItem");
+        productItem = (ProductItem) getIntent().getSerializableExtra("productItem");
         productItemList = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productList");
 
         initUI();
@@ -91,7 +87,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        share = (ImageView)findViewById(R.id.share);
+        share = (ImageView) findViewById(R.id.share);
         share.setVisibility(View.VISIBLE);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,22 +104,21 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         });
 
 
-
-        favorite = (ImageView)findViewById(R.id.favorite);
+        favorite = (ImageView) findViewById(R.id.favorite);
         favorite.setVisibility(View.VISIBLE);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
 
-                if (item != null){
+                if (item != null) {
                     mDataBaseManager.delete(productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                     Toast.makeText(getApplicationContext(), "取消收藏", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
-                    Toast.makeText(getApplicationContext(),"已收藏",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -139,7 +134,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     }
 
     private void initUI() {
-        back_arrow = (ImageView) findViewById(R.id.back_arrow);
+        ImageView back_arrow = (ImageView) findViewById(R.id.back_arrow);
         back_arrow.setVisibility(View.VISIBLE);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +142,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
-        left_back_title = (TextView) findViewById(R.id.left_back_title);
+        TextView left_back_title = (TextView) findViewById(R.id.left_back_title);
         left_back_title.setVisibility(View.VISIBLE);
         left_back_title.setText("Favorites");
 
@@ -158,7 +153,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        middle_text_title = (TextView) findViewById(R.id.middle_text_title);
+        TextView middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setVisibility(View.INVISIBLE);
     }
 
@@ -166,12 +161,12 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         int index = 0;
-        for (ProductItem item : productItemList){
-            if (item.getImageUrl().equals(productItem.getImageUrl())){
+        for (ProductItem item : productItemList) {
+            if (item.getImageUrl().equals(productItem.getImageUrl())) {
                 Log.i("FavoritesCover", " index = " + index);
                 mCoverFlow.setSelection(index);
                 break;
-            }else{
+            } else {
                 index++;
             }
         }

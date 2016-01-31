@@ -113,7 +113,7 @@ public class MainApplication extends Application {
 
         @Override
         protected Void doInBackground(String... params) {
-            String login_codes = MainApplication.getUpYun().readFile(MainApplication.ROOT_PATH + "login_codes.json");
+            String login_codes = MainApplication.getUpYun().readFile(LOGIN_CODE_PATH);
             Log.i(TAG,login_codes);
             Gson gson = new Gson();
             try {
