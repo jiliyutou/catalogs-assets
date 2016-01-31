@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            tools:src="@mipmap/lanucher_ic"/>
+            tools:src="@mipmap/launcher_ic"/>
     </LinearLayout>
 
 </FrameLayout>
