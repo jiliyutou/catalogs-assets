@@ -20,13 +20,13 @@
         "name" : "Basin mixer",
         "directory" : "Basin mixer",
         "thumbnail" : "Basin mixer.jpg",
-        "number": "20"
+        "number": 20
         },
         {
         "name" : "Kitchen mixer",
         "directory" : "Kitchen mixer",
         "thumbnail" : "Kitchen mixer.jpg",
-        "number": "16"
+        "number": 16
         }
     ]
 }
