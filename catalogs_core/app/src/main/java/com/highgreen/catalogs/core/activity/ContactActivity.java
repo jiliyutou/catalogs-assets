@@ -22,7 +22,7 @@ import com.highgreen.catalogs.core.json.JsonUtils;
 public class ContactActivity extends Activity {
 
     private final static String CONTACT_PATH = "json/contact.json";
-    private ListView contanct_listView;
+    private ListView contact_listView;
     private TextView company_website;
     private TextView company_address;
 
@@ -34,7 +34,7 @@ public class ContactActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
         initUI();
-        contanct_listView = (ListView) findViewById(R.id.contact_list);
+        contact_listView = (ListView) findViewById(R.id.contact_list);
         new GetContactTask().execute(CONTACT_PATH);
     }
 
@@ -81,8 +81,8 @@ public class ContactActivity extends Activity {
                 company_website.setText(contactInfo.getWebsite());
                 company_address = (TextView) findViewById(R.id.company_address);
                 company_address.setText(contactInfo.getAddress());
-                contanct_listView = (ListView) findViewById(R.id.contact_list);
-                contanct_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPerson()));
+                contact_listView = (ListView) findViewById(R.id.contact_list);
+                contact_listView.setAdapter(new PersonAdapter(ContactActivity.this, 0, contactInfo.getPerson()));
             } else {
                 Toast.makeText(ContactActivity.this, "Load contact.json failed", Toast.LENGTH_LONG).show();
             }

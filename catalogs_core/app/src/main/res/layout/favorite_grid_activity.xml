@@ -8,7 +8,7 @@
         android:id="@+id/no_favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/no_favorite"
+        android:text="@string/no_favorites_hint"
         android:gravity="center"
         android:visibility="invisible"
         />

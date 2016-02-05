@@ -41,8 +41,8 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 EditText passwordEditText = (EditText) findViewById(R.id.passwordEditText);
                 String password = passwordEditText.getText().toString().trim();
-                if (!(UserSharedPreference.getPassword(mContext).equals(password)||isCodeVaild(password))) {
-                    Toast.makeText(getApplicationContext(),R.string.error_code,Toast.LENGTH_SHORT).show();
+                if (!(UserSharedPreference.getPassword(mContext).equals(password)||isCodeValid(password))) {
+                    Toast.makeText(getApplicationContext(),R.string.login_error_hint,Toast.LENGTH_SHORT).show();
                 }else{
                     UserSharedPreference.updateLoginOnce(mContext,true);
                     finish();
@@ -51,19 +51,19 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private boolean isCodeVaild(String password) {
+    private boolean isCodeValid(String password) {
         List<LoginCodeItem> loginCodeItemList = MainApplication.getLoginCodes().getLogin_codes();
         for (LoginCodeItem code : loginCodeItemList){
             if (code.getCode().equals(password.trim())){
                 code.setValid(false);
-                new VaildLoginCodeTask().execute();
+                new ValidLoginCodeTask().execute();
                 return true;
             }
         }
         return false;
     }
 
-    private class VaildLoginCodeTask extends AsyncTask<Void,Void,Void>{
+    private class ValidLoginCodeTask extends AsyncTask<Void,Void,Void>{
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -71,7 +71,7 @@ public class LoginActivity extends Activity {
             String json = gson.toJson(MainApplication.getLoginCodes());
             Log.i(TAG,json);
             MainApplication.getUpYun().writeFile(MainApplication.LOGIN_CODE_PATH,json.getBytes());
-            Log.i(TAG, "VaildLoginCodeTask is succeed");
+            Log.i(TAG, "ValidLoginCodeTask is succeed");
             return null;
         }
     }

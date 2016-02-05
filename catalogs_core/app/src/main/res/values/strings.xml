@@ -17,9 +17,9 @@
 
     <string name="en_back">Back</string>
     <string name="login">Login</string>
-    <string name="login_hint">enter code</string>
-    <string name="error_code">Wrong code. Please try again</string>
-    <string name="no_favorite">nothing favorite</string>
+    <string name="login_hint">Enter code</string>
+    <string name="login_error_hint">Wrong code, please try again!</string>
+    <string name="no_favorites_hint">Nothing favorites</string>
 
     <string name="category_title">Categories</string>
 
