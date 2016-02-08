@@ -21,7 +21,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="CONTACT US"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -46,7 +45,6 @@
 
         </LinearLayout>
 
-
         <ListView
             android:id="@+id/contact_list"
             android:layout_width="fill_parent"
@@ -54,8 +52,5 @@
             android:divider="@color/transparent"
             android:listSelector="@color/transparent"></ListView>
 
-
     </LinearLayout>
-
-
 </LinearLayout>

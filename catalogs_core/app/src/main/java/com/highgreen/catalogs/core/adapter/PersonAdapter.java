@@ -1,14 +1,11 @@
 package com.highgreen.catalogs.core.adapter;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -63,12 +60,15 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         setListViewHeightBasedOnChildren(holder.contactsListView);
 
         if(person.getPhoto() != null && !person.getPhoto().equals("")) {
+            ViewGroup.LayoutParams layoutParams = holder.person_photo.getLayoutParams();
+            layoutParams.height = (int)((MainApplication.screen_width - 2 * 40) * 0.75);
+            Log.i("", layoutParams.height+" "+layoutParams.width);
+            holder.person_photo.setLayoutParams(layoutParams);
+
             String photoPath = MainApplication.CONTACT_UPYUN_URL + person.getPhoto();
             ImageLoader imageLoader = ImageLoader.getInstance();
             imageLoader.displayImage(photoPath, holder.person_photo, options);
         } else {
-            Log.i("", "nulllllll");
-
             ViewGroup.LayoutParams layoutParams = holder.person_photo.getLayoutParams();
             layoutParams.height = 0;
             holder.person_photo.setLayoutParams(layoutParams);

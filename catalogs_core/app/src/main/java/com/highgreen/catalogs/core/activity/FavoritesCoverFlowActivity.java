@@ -35,6 +35,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     private ProductItem productItem;
     private ArrayList<ProductItem> productItemList;
 
+    private ImageView detail;
     private ImageView share;
     private ImageView favorite;
     private DataBaseManager mDataBaseManager;
@@ -62,13 +63,10 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
                 Log.i("FavoritesCover", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null) {
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn2));
-
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
                 } else {
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn2));
-
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
-
             }
 
             @Override
@@ -84,6 +82,15 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
                 Intent intent = new Intent(FavoritesCoverFlowActivity.this, ProductImageViewActivity.class);
                 intent.putExtra("productItem", productItem);
                 startActivity(intent);
+            }
+        });
+
+        detail = (ImageView) findViewById(R.id.detail);
+        detail.setVisibility(View.VISIBLE);
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), productItem.getTitle(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,11 +120,11 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
                 if (item != null) {
                     mDataBaseManager.delete(productItem.getImageUrl());
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn2));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                     Toast.makeText(getApplicationContext(), "取消收藏", Toast.LENGTH_SHORT).show();
                 } else {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn2));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
                     Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
 
                 }
