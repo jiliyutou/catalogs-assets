@@ -3,14 +3,17 @@ package com.highgreen.catalogs.core.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
+import com.highgreen.catalogs.core.draw.LineDraw;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 
@@ -34,6 +37,29 @@ public class CatalogsActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
         mContext = this;
         initUI();
+//        // 获取手机窗口的大小
+        WindowManager wm = getWindowManager();
+        Display display = wm.getDefaultDisplay();
+        int screenWidth = display.getWidth();
+        int screenHeight = display.getHeight();
+
+        ImageView first_line = (ImageView) findViewById(R.id.first_line);
+        Bitmap first_style_line = (new LineDraw(CatalogsActivity.this, screenWidth,
+                screenHeight/13)).drawLine();
+        first_line.setImageBitmap(first_style_line);
+
+        ImageView second_line = (ImageView) findViewById(R.id.second_line);
+        Bitmap second_style_line = (new LineDraw(CatalogsActivity.this, screenWidth,
+                screenHeight/13)).drawLine2();
+        second_line.setImageBitmap(second_style_line);
+        ImageView third_line = (ImageView) findViewById(R.id.third_line);
+        third_line.setImageBitmap(first_style_line);
+        ImageView fourth_line = (ImageView) findViewById(R.id.fourth_line);
+        fourth_line.setImageBitmap(second_style_line);
+        ImageView fifth_line = (ImageView) findViewById(R.id.fifth_line);
+        fifth_line.setImageBitmap(first_style_line);
+        ImageView sixth_line = (ImageView) findViewById(R.id.sixth_line);
+        sixth_line.setImageBitmap(second_style_line);
     }
 
     @Override
