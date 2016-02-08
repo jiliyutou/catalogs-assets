@@ -2,6 +2,7 @@ package com.highgreen.catalogs.core.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.highgreen.catalogs.core.MainApplication;
+import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -42,6 +45,7 @@ public class CertificateActivity extends Activity{
 
     private ListView certificate_listView;
     private DisplayImageOptions options;
+    private List<String> urlList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +114,19 @@ public class CertificateActivity extends Activity{
         }
 
         @Override
-        protected void onPostExecute(List<String> urls) {
+        protected void onPostExecute(final List<String> urls) {
+            urlList = urls;
             certificate_listView.setAdapter(new ImageListViewAdapter(CertificateActivity.this, R.layout.certificate_item, urls));
+            certificate_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ProductItem item = new ProductItem();
+                    item.setImageUrl(urls.get(position));
+                    Intent intent = new Intent(CertificateActivity.this, ProductImageViewActivity.class);
+                    intent.putExtra("productItem", item);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

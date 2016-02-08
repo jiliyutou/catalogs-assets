@@ -5,7 +5,6 @@
     android:orientation="vertical">
     <ListView
         android:divider="@color/transparent"
-        android:listSelector="@color/transparent"
         android:background="@color/white"
         android:id="@+id/certificate_list"
         android:layout_width="fill_parent"
