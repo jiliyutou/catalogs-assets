@@ -66,10 +66,10 @@ public class ProductCoverFlowActivity extends FragmentActivity {
                 Log.i("mCoverFlow", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null){
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn2));
 
                 }else {
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn2));
 
                 }
 
@@ -117,11 +117,11 @@ public class ProductCoverFlowActivity extends FragmentActivity {
 
                 if (item != null){
                     mDataBaseManager.delete(productItem.getImageUrl());
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn2));
                     Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
                 }else {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
-                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
+                    favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn2));
                     Toast.makeText(getApplicationContext(),"已收藏",Toast.LENGTH_SHORT).show();
 
                 }

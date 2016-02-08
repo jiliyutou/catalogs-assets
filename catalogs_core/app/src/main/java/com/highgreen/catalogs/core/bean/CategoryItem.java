@@ -8,8 +8,6 @@ public class CategoryItem {
     private String currentPath;
     private String httpHeader;
     private String title;
-    private int number;
-
 
     public String getImageUrl() {
         return imageUrl;
@@ -41,13 +39,5 @@ public class CategoryItem {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 }

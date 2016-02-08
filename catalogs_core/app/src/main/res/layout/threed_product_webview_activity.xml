@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/category_bg"
-    >
+    android:gravity="center"
+    android:background="@mipmap/uniform_bg">
+
    <WebView
        android:background="@color/transparent"
        android:id="@+id/threed_webview"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-   </WebView>
+       android:layout_height="wrap_content"/>
+
 </LinearLayout>

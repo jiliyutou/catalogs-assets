@@ -124,7 +124,6 @@ public class CategoryActivity extends Activity {
 
             imageLoader.displayImage(getItem(position).getImageUrl(), holder.image, options, animateFirstListener);
             holder.title.setText(getItem(position).getTitle());
-            holder.number.setText("Number of products: " + getItem(position).getNumber());
             return convertView;
         }
 
@@ -151,7 +150,7 @@ public class CategoryActivity extends Activity {
                 Category category = gson.fromJson(categoryString, Category.class);
                 categoryItemAdpterList = category.getCategories();
             } else {
-                Toast.makeText(getApplicationContext(),"categories json is not exist or parse error ",Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(),"categories.json is not exist or parse error ",Toast.LENGTH_SHORT);
             }
 
             List<CategoryItem> categoryItemList = new ArrayList<CategoryItem>();
@@ -165,7 +164,6 @@ public class CategoryActivity extends Activity {
                 String httpHeader = MainApplication.UPYUN_REQUEST_HEADER + item.getDirectory() + File.separator;
                 String currentPath = MainApplication.RESOURCE_ROOT + item.getDirectory();
 
-                categoryItem.setNumber(item.getNumber());
                 categoryItem.setHttpHeader(httpHeader);
                 categoryItem.setCurrentPath(currentPath);
                 categoryItemList.add(categoryItem);
