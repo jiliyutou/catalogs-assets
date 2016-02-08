@@ -91,7 +91,7 @@ public class CatalogsActivity extends Activity {
         mContactInformationTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent contact = new Intent(CatalogsActivity.this, ContactActivity.class);
+                Intent contact = new Intent(CatalogsActivity.this, Contact2Activity.class);
                 startActivity(contact);
             }
         });

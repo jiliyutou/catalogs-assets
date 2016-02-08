@@ -1,5 +1,7 @@
 package com.highgreen.catalogs.core.bean;
 
+import com.highgreen.catalogs.core.adapter.CategoryItemAdpter;
+
 import java.util.List;
 
 /**

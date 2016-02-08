@@ -1,4 +1,4 @@
-package com.highgreen.catalogs.core.bean;
+package com.highgreen.catalogs.core.adapter;
 
 /**
  * Created by tihong on 16-1-31.

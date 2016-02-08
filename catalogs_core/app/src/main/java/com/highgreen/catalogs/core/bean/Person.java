@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class Person {
     private String name;
+    private String photo;
     private List<ParamKVPair> contacts;
 
     public String getName() {
@@ -15,6 +16,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public List<ParamKVPair> getContacts() {

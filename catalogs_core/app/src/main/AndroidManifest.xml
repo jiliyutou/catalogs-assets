@@ -41,7 +41,10 @@
 
         <activity android:name="com.highgreen.catalogs.core.activity.CompanyProfileActivity"/>
 
+        <!-- not used yet -->
         <activity android:name="com.highgreen.catalogs.core.activity.ContactActivity"/>
+
+        <activity android:name="com.highgreen.catalogs.core.activity.Contact2Activity"/>
 
         <activity android:name="com.highgreen.catalogs.core.activity.CertificateActivity"/>
 

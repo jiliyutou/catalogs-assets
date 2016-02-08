@@ -22,7 +22,7 @@ import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.Category;
 import com.highgreen.catalogs.core.bean.CategoryItem;
-import com.highgreen.catalogs.core.bean.CategoryItemAdpter;
+import com.highgreen.catalogs.core.adapter.CategoryItemAdpter;
 import com.highgreen.catalogs.core.json.JsonUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
