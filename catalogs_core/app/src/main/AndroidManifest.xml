@@ -29,6 +29,9 @@
 
         <activity android:name="com.highgreen.catalogs.core.activity.NewProductGridActivity"/>
 
+        <activity android:name="com.highgreen.catalogs.core.activity.ThreeDProductGridActivity"/>
+        <activity android:name="com.highgreen.catalogs.core.activity.ThreeDProductWebViewActivity"/>
+
         <!-- not used yet -->
         <activity android:name="com.highgreen.catalogs.core.activity.ProductScrollGalleryActivity"/>
 

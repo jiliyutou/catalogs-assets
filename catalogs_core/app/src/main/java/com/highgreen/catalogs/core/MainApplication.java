@@ -45,6 +45,7 @@ public class MainApplication extends Application {
     public final static String CONTACT_PATH = RESOURCE_ROOT + CONTACT;
     public final static String UPYUN_REQUEST_HEADER = "http://" + SERVER_NAME + DOMAIN + RESOURCE_ROOT;
     public final static String NEW_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + NEW_PRODUCTS;
+    public final static String THREED_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + THREED_PRODUCTS;
     public final static String CONTACT_UPYUN_URL = UPYUN_REQUEST_HEADER + CONTACT;
 
     public static int screen_width;

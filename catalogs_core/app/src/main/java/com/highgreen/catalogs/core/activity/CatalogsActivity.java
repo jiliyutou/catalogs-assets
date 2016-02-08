@@ -74,9 +74,8 @@ public class CatalogsActivity extends Activity {
         m3DProductListTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"not supported",Toast.LENGTH_SHORT).show();
-                //Intent threeDProduct = new Intent(CatalogsActivity.this, ThreeDProductGridActivity.class);
-                //startActivity(threeDProduct);
+                Intent threeDProduct = new Intent(CatalogsActivity.this, ThreeDProductGridActivity.class);
+                startActivity(threeDProduct);
             }
         });
 

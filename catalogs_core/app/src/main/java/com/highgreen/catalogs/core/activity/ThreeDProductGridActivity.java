@@ -45,11 +45,11 @@ public class ThreeDProductGridActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
         this.gridView = (GridView) findViewById(R.id.gridview);
-        this.currentPath = MainApplication.NEW_PRODUCTS_PATH;
-        this.httpHeader = MainApplication.NEW_PRODUCTS_UPYUN_URL + "/";
+        this.currentPath = MainApplication.THREED_PRODUCTS_PATH;
+        this.httpHeader = MainApplication.THREED_PRODUCTS_UPYUN_URL;
 
         initUI();
-        new GetNewProductTask().execute(currentPath, httpHeader);
+        new GetThreeDProductTask().execute(currentPath, httpHeader);
     }
 
     private void initUI() {
@@ -74,7 +74,7 @@ public class ThreeDProductGridActivity extends Activity {
 
         middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setVisibility(View.VISIBLE);
-        middle_text_title.setText(R.string.new_product_title);
+        middle_text_title.setText(R.string.threeD_product_title);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ThreeDProductGridActivity extends Activity {
         super.onBackPressed();
     }
 
-    private class GetNewProductTask extends AsyncTask<String, Void, List<ProductItem>> {
+    private class GetThreeDProductTask extends AsyncTask<String, Void, List<ProductItem>> {
         @Override
         protected List<ProductItem> doInBackground(String... params) {
             String currentPath = params[0];
@@ -95,10 +95,12 @@ public class ThreeDProductGridActivity extends Activity {
             if (folderItemList != null && folderItemList.size() > 1) {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
-                    ProductItem productItem = new ProductItem();
-                    productItem.setImageUrl(httpHeader + "/" +item.name);
-                    productItem.setTitle(item.name.split("\\.")[0]);
-                    productItemList.add(productItem);
+                    if (!item.name.split("\\.")[1].equals("html")){
+                        ProductItem productItem = new ProductItem();
+                        productItem.setImageUrl(httpHeader +item.name);
+                        productItem.setTitle(item.name.split("\\.")[0]);
+                        productItemList.add(productItem);
+                    }
                 }
             }
             return productItemList;
@@ -115,12 +117,9 @@ public class ThreeDProductGridActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ProductItem item = data.get(position);
-                    Intent intent = new Intent(ThreeDProductGridActivity.this, ProductCoverFlowActivity.class);
-                    intent.putExtra("title", "Back");
-                    intent.putExtra("item_name",item.getTitle());
-                    intent.putExtra("currentPath", currentPath);
-                    intent.putExtra("httpHeader",httpHeader);
-                    intent.putExtra("productItemList", (Serializable) data);
+                    Intent intent = new Intent(ThreeDProductGridActivity.this, ThreeDProductWebViewActivity.class);
+                    intent.putExtra("url",httpHeader + item.getTitle()+".html");
+                    intent.putExtra("title", item.getTitle());
                     startActivity(intent);
                 }
             });
