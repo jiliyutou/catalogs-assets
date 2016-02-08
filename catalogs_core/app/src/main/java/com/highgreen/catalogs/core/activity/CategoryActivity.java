@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.Category;
@@ -137,8 +136,6 @@ public class CategoryActivity extends Activity {
             TextView title;
             TextView number;
         }
-
-
     }
 
     private class GetCategoryTask extends AsyncTask<String, Void, List<CategoryItem>> {
@@ -165,18 +162,15 @@ public class CategoryActivity extends Activity {
                 categoryItem.setImageUrl(url);
                 categoryItem.setTitle(item.getName());
 
-                String httpHeader = MainApplication.HTTP_PREFIX + item.getDirectory() + File.separator;
-                String currentPath = MainApplication.ROOT_PATH + item.getDirectory();
+                String httpHeader = MainApplication.UPYUN_REQUEST_HEADER + item.getDirectory() + File.separator;
+                String currentPath = MainApplication.RESOURCE_ROOT + item.getDirectory();
 
                 categoryItem.setNumber(item.getNumber());
                 categoryItem.setHttpHeader(httpHeader);
                 categoryItem.setCurrentPath(currentPath);
                 categoryItemList.add(categoryItem);
             }
-
-
             return categoryItemList;
-
         }
 
         @Override

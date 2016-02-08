@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.highgreen.catalogs.core.R;
@@ -18,6 +19,8 @@ public class CatalogsActivity extends Activity {
     private Button mLanguageButton;
     private Context mContext;
     private TextView mProductListTextView;
+    private TextView mNewProductListTextView;
+    private TextView m3DProductListTextView;
     private TextView mCompanyProfileTextView;
     private TextView mContactInformationTextView;
     private TextView mFavoritesTextView;
@@ -45,6 +48,8 @@ public class CatalogsActivity extends Activity {
     private void initUI() {
 
         mProductListTextView = (TextView) findViewById(R.id.product_list);
+        mNewProductListTextView = (TextView) findViewById(R.id.new_product_list);
+        m3DProductListTextView = (TextView) findViewById(R.id.threed_product_list);
         mCompanyProfileTextView = (TextView) findViewById(R.id.company_profile);
         mContactInformationTextView = (TextView) findViewById(R.id.contact_information);
         mFavoritesTextView = (TextView) findViewById(R.id.favorites);
@@ -55,6 +60,23 @@ public class CatalogsActivity extends Activity {
             public void onClick(View v) {
                 Intent category = new Intent(CatalogsActivity.this, CategoryActivity.class);
                 startActivity(category);
+            }
+        });
+
+        mNewProductListTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newProduct = new Intent(CatalogsActivity.this, NewProductGridActivity.class);
+                startActivity(newProduct);
+            }
+        });
+
+        m3DProductListTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"not supported",Toast.LENGTH_SHORT).show();
+                //Intent threeDProduct = new Intent(CatalogsActivity.this, ThreeDProductGridActivity.class);
+                //startActivity(threeDProduct);
             }
         });
 
@@ -77,7 +99,7 @@ public class CatalogsActivity extends Activity {
         mFavoritesTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent favorites = new Intent(CatalogsActivity.this,FavoritesGridActivity.class);
+                Intent favorites = new Intent(CatalogsActivity.this, FavoritesGridActivity.class);
                 startActivity(favorites);
 
             }
@@ -100,6 +122,8 @@ public class CatalogsActivity extends Activity {
                 if (getResources().getString(R.string.cn_language).trim().equals(text.trim())) {
                     mLanguageButton.setText(R.string.en_language);
                     mProductListTextView.setText(R.string.en_product_list);
+                    mNewProductListTextView.setText(R.string.en_new_product_list);
+                    m3DProductListTextView.setText(R.string.en_threed_product_list);
                     mCompanyProfileTextView.setText(R.string.en_company_profile);
                     mContactInformationTextView.setText(R.string.en_contact_information);
                     mFavoritesTextView.setText(R.string.en_favorites);
@@ -107,14 +131,14 @@ public class CatalogsActivity extends Activity {
                 } else {
                     mLanguageButton.setText(R.string.cn_language);
                     mProductListTextView.setText(R.string.cn_product_list);
+                    mNewProductListTextView.setText(R.string.cn_new_product_list);
+                    m3DProductListTextView.setText(R.string.cn_threed_product_list);
                     mCompanyProfileTextView.setText(R.string.cn_company_profile);
                     mContactInformationTextView.setText(R.string.cn_contact_information);
                     mFavoritesTextView.setText(R.string.cn_favorites);
                     mProductCertificateTextView.setText(R.string.cn_product_certificate);
                 }
-
             }
         });
     }
-
 }

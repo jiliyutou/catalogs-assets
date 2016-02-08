@@ -70,7 +70,7 @@ public class LoginActivity extends Activity {
             Gson gson = new Gson();
             String json = gson.toJson(MainApplication.getLoginCodes());
             Log.i(TAG,json);
-            MainApplication.getUpYun().writeFile(MainApplication.LOGIN_CODE_PATH,json.getBytes());
+            MainApplication.getUpYun().writeFile(MainApplication.LOGIN_CODES_PATH,json.getBytes());
             Log.i(TAG, "ValidLoginCodeTask is succeed");
             return null;
         }

@@ -3,6 +3,8 @@
     <string name="app_name">Meiya</string>
     <string name="cn_language">语言</string>
     <string name="cn_product_list">产品目录</string>
+    <string name="cn_new_product_list">新产品</string>
+    <string name="cn_threed_product_list">3D展示</string>
     <string name="cn_company_profile">公司介绍</string>
     <string name="cn_contact_information">联系方式</string>
     <string name="cn_favorites">收藏夹</string>
@@ -10,6 +12,8 @@
 
     <string name="en_language">LANGUAGE</string>
     <string name="en_product_list">PRODUCTS</string>
+    <string name="en_new_product_list">NEW PRODUCTS</string>
+    <string name="en_threed_product_list">3D PRODUCTS</string>
     <string name="en_company_profile">COMPANY</string>
     <string name="en_contact_information">CONTACTS</string>
     <string name="en_favorites">FAVORITES</string>
@@ -22,6 +26,8 @@
     <string name="no_favorites_hint">Nothing favorites</string>
 
     <string name="category_title">Categories</string>
+    <string name="new_product_title">新产品</string>
+    <string name="threeD_product_title">3D产品展示</string>
 
 
 </resources>

@@ -26,17 +26,23 @@ import java.io.File;
  */
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
-    private static final String password = "androidadmin";
+    private static final String LOGIN_PWD = "androidadmin";
 
-    public final static String SERVER_NAME = "catalog-assets";
-    public final static String OPERATOR_NAME = "androidadmin";
-    public final static String OPERATOR_PASSWORD = "androidadmin";
-    public final static String HTTP_HEADER = "http://";
-    public final static String HOST = ".b0.upaiyun.com";
-    public final static String ROOT_PATH = "/004_meiya/";
-    public final static String LOGIN_CODE_PATH =ROOT_PATH+"login_codes.json";
+    private final static String SERVER_NAME = "catalog-assets";
+    private final static String OPERATOR_NAME = "androidadmin";
+    private final static String OPERATOR_PASSWORD = "androidadmin";
+    private final static String DOMAIN = ".b0.upaiyun.com";
+    private final static String LOGIN_CODES = "login_codes.json";
+    private final static String NEW_PRODUCTS =  "new_products/";
+    private final static String THREED_PRODUCTS = "threed_products/";
 
-    public final static String HTTP_PREFIX = HTTP_HEADER + SERVER_NAME + HOST + ROOT_PATH;
+    public final static String RESOURCE_ROOT = "/004_meiya/";
+    public final static String LOGIN_CODES_PATH = RESOURCE_ROOT + LOGIN_CODES;
+    public final static String NEW_PRODUCTS_PATH = RESOURCE_ROOT + NEW_PRODUCTS;
+    public final static String THREED_PRODUCTS_PATH = RESOURCE_ROOT + THREED_PRODUCTS;
+    public final static String UPYUN_REQUEST_HEADER = "http://" + SERVER_NAME + DOMAIN + RESOURCE_ROOT;
+    public final static String NEW_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + NEW_PRODUCTS;
+
     public static int screen_width;
     public static int screen_height;
 
@@ -51,7 +57,7 @@ public class MainApplication extends Application {
         mContext = this;
         Log.i(TAG, UserSharedPreference.getPassword(mContext) + " " + UserSharedPreference.getLoginOnce(mContext));
         if (UserSharedPreference.getPassword(mContext) == null) {
-            UserSharedPreference.updatePassword(mContext, password);
+            UserSharedPreference.updatePassword(mContext, LOGIN_PWD);
             UserSharedPreference.updateLoginOnce(mContext, false);
         }
         Log.i(TAG, "after " + UserSharedPreference.getPassword(mContext) + " " + UserSharedPreference.getLoginOnce(mContext));
@@ -66,7 +72,7 @@ public class MainApplication extends Application {
 
         Log.i(TAG, "screen_width : " + screen_width + ", screen_height : " + screen_height);
 
-        new GetLoginCodesTask().execute(LOGIN_CODE_PATH);
+        new GetLoginCodesTask().execute(LOGIN_CODES_PATH);
 
     }
 
@@ -113,13 +119,13 @@ public class MainApplication extends Application {
 
         @Override
         protected Void doInBackground(String... params) {
-            String login_codes = MainApplication.getUpYun().readFile(LOGIN_CODE_PATH);
-            Log.i(TAG,login_codes);
-            Gson gson = new Gson();
             try {
+                String login_codes = MainApplication.getUpYun().readFile(LOGIN_CODES_PATH);
+                Log.i(TAG,login_codes);
+                Gson gson = new Gson();
                 loginCodes = gson.fromJson(login_codes, LoginCodes.class);
                 if (login_codes == null){
-                    Log.i(TAG,"loginCodes is null");
+                    Log.i(TAG, "loginCodes is null");
                     return null;
                 }
                 Log.i(TAG,loginCodes.getLogin_codes().size()+"");
