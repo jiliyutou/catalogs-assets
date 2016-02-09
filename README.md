@@ -95,3 +95,6 @@
 
 ## icons-launcher
 - https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
+
+## icon-resource
+- http://www.iconpng.com/series/1117/
