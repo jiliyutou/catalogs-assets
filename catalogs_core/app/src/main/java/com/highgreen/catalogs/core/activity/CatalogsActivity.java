@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.highgreen.catalogs.core.draw.LineDraw;
+import com.highgreen.catalogs.core.utils.LineDraw;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 

@@ -11,13 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
-import com.highgreen.catalogs.core.bean.Person;
-import com.highgreen.catalogs.core.json.JsonUtils;
 
 /**
  * Created by tihong on 16-1-24.

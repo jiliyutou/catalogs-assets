@@ -1,4 +1,4 @@
-package com.highgreen.catalogs.core.draw;
+package com.highgreen.catalogs.core.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,16 +27,16 @@ public class LineDraw extends View {
         // 设置抗锯齿
         mPaint.setAntiAlias(true);
         // 设置线宽
-        mPaint.setStrokeWidth(3);
+        mPaint.setStrokeWidth(4);
         // 设置非填充
-//        mPaint.setStyle(Paint.Style.STROKE);
+        // mPaint.setStyle(Paint.Style.STROKE);
         // 声明位图
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         // 声明画布
         mCanvas = new Canvas(mBitmap);
 
-        this.width= width;
-        this.height =height;
+        this.width = width;
+        this.height = height;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class LineDraw extends View {
     }
 
     public Bitmap drawLine(){
-        mCanvas.drawLine(0, height, width+200, 0, mPaint);
+        mCanvas.drawLine(0, height, width, 0, mPaint);
         return mBitmap;
     }
     public Bitmap drawLine2(){
-        mCanvas.drawLine(0, 0, width+200, height, mPaint);
+        mCanvas.drawLine(0, 0, width, height, mPaint);
         return mBitmap;
     }
 }

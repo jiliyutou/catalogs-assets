@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
-import com.highgreen.catalogs.core.json.JsonUtils;
+import com.highgreen.catalogs.core.utils.JsonUtils;
 
 /**
  * Created by tihong on 16-1-24.

@@ -1,4 +1,4 @@
-package com.highgreen.catalogs.core.json;
+package com.highgreen.catalogs.core.utils;
 
 import android.content.Context;
 

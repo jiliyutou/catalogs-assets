@@ -63,7 +63,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             @Override
             public View makeView() {
                 LayoutInflater inflater = LayoutInflater.from(ProductCoverFlowActivity.this);
-                TextView textView = (TextView) inflater.inflate(R.layout.item_title, null);
+                TextView textView = (TextView) inflater.inflate(R.layout.coverflow_title_item, null);
                 return textView;
             }
         });
