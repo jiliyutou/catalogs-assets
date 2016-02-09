@@ -2,13 +2,8 @@ package com.highgreen.catalogs.core;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.WindowManager;
-
-import com.google.gson.Gson;
-import com.highgreen.catalogs.core.bean.ContactInfo;
-import com.highgreen.catalogs.core.bean.LoginCodes;
 import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
@@ -42,7 +37,7 @@ public class MainApplication extends Application {
     public final static String LOGIN_CODES_PATH = RESOURCE_ROOT + LOGIN_CODES;
     public final static String NEW_PRODUCTS_PATH = RESOURCE_ROOT + NEW_PRODUCTS;
     public final static String THREED_PRODUCTS_PATH = RESOURCE_ROOT + THREED_PRODUCTS;
-    public final static String CONTACT_PATH = RESOURCE_ROOT + CONTACT;
+    public final static String CONTACT_PATH = RESOURCE_ROOT + CONTACT+"contact.json";
     public final static String UPYUN_REQUEST_HEADER = "http://" + SERVER_NAME + DOMAIN + RESOURCE_ROOT;
     public final static String NEW_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + NEW_PRODUCTS;
     public final static String THREED_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + THREED_PRODUCTS;
@@ -53,9 +48,6 @@ public class MainApplication extends Application {
 
     private static Context mContext = null;
     private static UpYun upYun = null;
-
-    public static LoginCodes loginCodes;
-    public static ContactInfo contactInfo;
 
     @Override
     public void onCreate() {
@@ -77,10 +69,6 @@ public class MainApplication extends Application {
         screen_height = wm.getDefaultDisplay().getHeight();
 
         Log.i(TAG, "screen_width : " + screen_width + ", screen_height : " + screen_height);
-
-        new GetLoginCodesTask().execute(LOGIN_CODES_PATH);
-        new GetContactTask().execute(CONTACT_PATH);
-
     }
 
     private void initUpYun() {
@@ -120,53 +108,5 @@ public class MainApplication extends Application {
 
     public static UpYun getUpYun() {
         return upYun;
-    }
-
-    private class GetLoginCodesTask extends AsyncTask<String,Void,Void>{
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                String login_codes = MainApplication.getUpYun().readFile(LOGIN_CODES_PATH);
-                Log.i(TAG,login_codes);
-                loginCodes = new Gson().fromJson(login_codes, LoginCodes.class);
-                if (login_codes == null){
-                    Log.i(TAG, "loginCodes is null");
-                    return null;
-                }
-                Log.i(TAG,loginCodes.getLogin_codes().size()+"");
-            }catch (Exception e){
-                return null;
-            }
-            return null;
-        }
-    }
-
-    private class GetContactTask extends AsyncTask<String,Void,Void>{
-
-        @Override
-        protected Void doInBackground(String... params) {
-            try {
-                String contact = MainApplication.getUpYun().readFile(CONTACT_PATH + "contact.json");
-                Log.i(TAG, contact);
-                contactInfo = new Gson().fromJson(contact, ContactInfo.class);
-                if (contactInfo == null){
-                    Log.i(TAG, "contactInfo is null");
-                    return null;
-                }
-                Log.i(TAG,contactInfo.getPerson().size()+"");
-            }catch (Exception e){
-                return null;
-            }
-            return null;
-        }
-    }
-
-    public static LoginCodes getLoginCodes() {
-        return loginCodes;
-    }
-
-    public static ContactInfo getContactInfo() {
-        return contactInfo;
     }
 }

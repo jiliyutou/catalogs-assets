@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
@@ -21,9 +22,11 @@ import com.highgreen.catalogs.core.bean.ContactInfo;
  */
 public class Contact2Activity extends Activity {
 
+    private final static String TAG = "Contact2Activity";
     private ListView contact_listView;
     private TextView company_website;
     private TextView company_address;
+    private ContactInfo contactInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class Contact2Activity extends Activity {
 
         initUI();
         contact_listView = (ListView) findViewById(R.id.contact_list);
-        new GetContactTask().execute();
+        new GetContactTask().execute(MainApplication.CONTACT_PATH);
     }
 
     private void initUI() {
@@ -66,10 +69,19 @@ public class Contact2Activity extends Activity {
 
         @Override
         protected ContactInfo doInBackground(String... params) {
-
-            ContactInfo info = MainApplication.getContactInfo();
-            Log.i("", info.toString());
-            return info;
+            try {
+                String contact = MainApplication.getUpYun().readFile(params[0]);
+                Log.i(TAG, contact);
+                contactInfo = new Gson().fromJson(contact, ContactInfo.class);
+                if (contactInfo == null){
+                    Log.i(TAG, "contactInfo is null");
+                    return null;
+                }
+                Log.i(TAG,contactInfo.getPerson().size()+"");
+            }catch (Exception e){
+                return null;
+            }
+            return contactInfo;
         }
 
         @Override
@@ -93,4 +105,5 @@ public class Contact2Activity extends Activity {
         // AnimateFirstDisplayListener.displayedImages.clear();
         super.onBackPressed();
     }
+
 }
