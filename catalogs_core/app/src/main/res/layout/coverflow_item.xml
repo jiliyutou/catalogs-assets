@@ -18,6 +18,18 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             tools:src="@mipmap/launcher_ic"/>
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:padding="8dp"
+            tools:text="Title"
+            android:background="@drawable/label_background"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </FrameLayout>

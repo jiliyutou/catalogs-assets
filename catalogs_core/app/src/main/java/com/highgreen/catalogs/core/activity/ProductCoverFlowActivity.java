@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.CoverFlowAdapter;
@@ -42,6 +47,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     private ImageView share;
     private ImageView favorite;
     private DataBaseManager mDataBaseManager;
+    private TextSwitcher mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,20 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
+
+        mTitle = (TextSwitcher)findViewById(R.id.title);
+        mTitle.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                LayoutInflater inflater = LayoutInflater.from(ProductCoverFlowActivity.this);
+                TextView textView = (TextView) inflater.inflate(R.layout.item_title, null);
+                return textView;
+            }
+        });
+        Animation in = AnimationUtils.loadAnimation(this, R.anim.slide_in_top);
+        Animation out = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
+        mTitle.setInAnimation(in);
+        mTitle.setOutAnimation(out);
 
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         Bundle bundle = getIntent().getExtras();
@@ -63,6 +83,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             @Override
             public void onScrolledToPosition(int position) {
                 productItem = data.get(position);
+                mTitle.setText(productItem.getTitle());
                 Log.i("mCoverFlow", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null){
@@ -74,6 +95,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
 
             @Override
             public void onScrolling() {
+                mTitle.setText("");
             }
         });
 

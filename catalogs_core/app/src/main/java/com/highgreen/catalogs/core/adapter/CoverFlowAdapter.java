@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.listener.AnimateFirstDisplayListener;
@@ -45,17 +46,20 @@ public class CoverFlowAdapter extends ArrayAdapter<ProductItem> {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.coverflow_item,null);
             holder = new ViewHolder();
             holder.image = (ImageView) convertView.findViewById(R.id.image);
+            holder.text = (TextView) convertView.findViewById(R.id.label);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
         imageLoader.displayImage(getItem(position).getImageUrl(), holder.image, options);
+        holder.text.setText(getItem(position).getTitle());
 		return convertView;
 	}
 
 
     static class ViewHolder {
         public ImageView image;
+        public TextView text;
     }
 
 

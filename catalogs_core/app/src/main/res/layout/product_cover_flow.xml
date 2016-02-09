@@ -17,4 +17,11 @@
         coverflow:rotationThreshold="0.5"
         coverflow:scalingThreshold="0.5"
         coverflow:spacing="0.6" />
+    <TextSwitcher
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>
