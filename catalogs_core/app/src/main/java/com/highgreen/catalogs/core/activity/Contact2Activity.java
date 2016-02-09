@@ -16,6 +16,7 @@ import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.PersonAdapter;
 import com.highgreen.catalogs.core.bean.ContactInfo;
+import com.highgreen.catalogs.core.utils.NetworkUtils;
 
 /**
  * Created by tihong on 16-1-24.
@@ -35,9 +36,14 @@ public class Contact2Activity extends Activity {
         setContentView(R.layout.contact_activity);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
+        if (NetworkUtils.isNetworkAvailable(Contact2Activity.this)) {
+            new GetContactTask().execute(MainApplication.CONTACT_PATH);
+        }else{
+            NetworkUtils.setNetworkMethod(Contact2Activity.this);
+        }
         initUI();
         contact_listView = (ListView) findViewById(R.id.contact_list);
-        new GetContactTask().execute(MainApplication.CONTACT_PATH);
+
     }
 
     private void initUI() {

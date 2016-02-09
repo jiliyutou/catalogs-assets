@@ -16,6 +16,7 @@ import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.ProductGridAdapter;
 import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.upyun.UpYun;
+import com.highgreen.catalogs.core.utils.NetworkUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,7 +50,12 @@ public class NewProductGridActivity extends Activity {
         this.httpHeader = MainApplication.NEW_PRODUCTS_UPYUN_URL + "/";
 
         initUI();
-        new GetNewProductTask().execute(currentPath, httpHeader);
+
+        if (NetworkUtils.isNetworkAvailable(NewProductGridActivity.this)){
+            new GetNewProductTask().execute(currentPath, httpHeader);
+        }else{
+            NetworkUtils.setNetworkMethod(NewProductGridActivity.this);
+        }
     }
 
     private void initUI() {

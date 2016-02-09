@@ -19,6 +19,7 @@ import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.CoverFlowAdapter;
 import com.highgreen.catalogs.core.bean.ProductItem;
 import com.highgreen.catalogs.core.database.DataBaseManager;
+import com.highgreen.catalogs.core.utils.NetworkUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
@@ -131,6 +132,9 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
             }
         });
 
+        if (!NetworkUtils.isNetworkAvailable(FavoritesCoverFlowActivity.this)) {
+            NetworkUtils.setNetworkMethod(FavoritesCoverFlowActivity.this);
+        }
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {

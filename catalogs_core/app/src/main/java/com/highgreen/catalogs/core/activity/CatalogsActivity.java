@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.preference.UserSharedPreference;
 import com.highgreen.catalogs.core.utils.LineDraw;
@@ -37,20 +38,20 @@ public class CatalogsActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
         mContext = this;
         initUI();
-//        // 获取手机窗口的大小
+        // 获取手机窗口的大小
         WindowManager wm = getWindowManager();
         Display display = wm.getDefaultDisplay();
         int screenWidth = display.getWidth();
         int screenHeight = display.getHeight();
 
-        ImageView first_line = (ImageView) findViewById(R.id.first_line);
         Bitmap first_style_line = (new LineDraw(CatalogsActivity.this, screenWidth,
-                screenHeight/13)).drawLine();
-        first_line.setImageBitmap(first_style_line);
-
-        ImageView second_line = (ImageView) findViewById(R.id.second_line);
+                screenHeight / 13)).drawLine();
         Bitmap second_style_line = (new LineDraw(CatalogsActivity.this, screenWidth,
-                screenHeight/13)).drawLine2();
+                screenHeight / 13)).drawLine2();
+
+        ImageView first_line = (ImageView) findViewById(R.id.first_line);
+        first_line.setImageBitmap(first_style_line);
+        ImageView second_line = (ImageView) findViewById(R.id.second_line);
         second_line.setImageBitmap(second_style_line);
         ImageView third_line = (ImageView) findViewById(R.id.third_line);
         third_line.setImageBitmap(first_style_line);
@@ -61,7 +62,7 @@ public class CatalogsActivity extends Activity {
         ImageView sixth_line = (ImageView) findViewById(R.id.sixth_line);
         sixth_line.setImageBitmap(second_style_line);
 
-        if (!NetworkUtils.isNetworkAvailable(mContext)){
+        if (!NetworkUtils.isNetworkAvailable(mContext)) {
             NetworkUtils.setNetworkMethod(mContext);
         }
     }
