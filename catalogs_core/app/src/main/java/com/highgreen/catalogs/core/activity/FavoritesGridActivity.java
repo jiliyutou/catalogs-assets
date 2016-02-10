@@ -137,7 +137,6 @@ public class FavoritesGridActivity extends Activity {
         productItemList.addAll(list);
 
         if (productItemList == null || productItemList.size() == 0) {
-            //
             findViewById(R.id.no_favorite).setVisibility(View.VISIBLE);
 
         } else {

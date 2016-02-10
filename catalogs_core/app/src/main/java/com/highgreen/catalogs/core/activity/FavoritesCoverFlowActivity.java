@@ -128,7 +128,6 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
                     Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

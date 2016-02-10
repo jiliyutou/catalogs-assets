@@ -22,7 +22,7 @@ import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.Category;
 import com.highgreen.catalogs.core.bean.CategoryItem;
-import com.highgreen.catalogs.core.adapter.CategoryItemAdpter;
+import com.highgreen.catalogs.core.adapter.CategoryItemAdapter;
 import com.highgreen.catalogs.core.utils.JsonUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -141,21 +141,21 @@ public class CategoryActivity extends Activity {
         @Override
         protected List<CategoryItem> doInBackground(String... params) {
 
-            List<CategoryItemAdpter> categoryItemAdpterList = new ArrayList<CategoryItemAdpter>();
+            List<CategoryItemAdapter> categoryItemAdapterList = new ArrayList<CategoryItemAdapter>();
 
             String categoryString = JsonUtils.getJson(getApplicationContext(), params[1]);
 
             if (categoryString != null) {
                 Gson gson = new Gson();
                 Category category = gson.fromJson(categoryString, Category.class);
-                categoryItemAdpterList = category.getCategories();
+                categoryItemAdapterList = category.getCategories();
             } else {
                 Toast.makeText(getApplicationContext(),"categories.json is not exist or parse error ",Toast.LENGTH_SHORT);
             }
 
             List<CategoryItem> categoryItemList = new ArrayList<CategoryItem>();
 
-            for (CategoryItemAdpter item : categoryItemAdpterList) {
+            for (CategoryItemAdapter item : categoryItemAdapterList) {
                 CategoryItem categoryItem = new CategoryItem();
                 String url = "assets://" + params[0] + "/" + item.getThumbnail();
                 categoryItem.setImageUrl(url);

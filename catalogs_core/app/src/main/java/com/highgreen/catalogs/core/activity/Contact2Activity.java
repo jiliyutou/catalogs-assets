@@ -43,7 +43,6 @@ public class Contact2Activity extends Activity {
         }
         initUI();
         contact_listView = (ListView) findViewById(R.id.contact_list);
-
     }
 
     private void initUI() {

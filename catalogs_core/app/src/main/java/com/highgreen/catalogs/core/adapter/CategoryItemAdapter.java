@@ -3,7 +3,7 @@ package com.highgreen.catalogs.core.adapter;
 /**
  * Created by tihong on 16-1-31.
  */
-public class CategoryItemAdpter {
+public class CategoryItemAdapter {
     private String name;
     private String directory;
     private String thumbnail;
