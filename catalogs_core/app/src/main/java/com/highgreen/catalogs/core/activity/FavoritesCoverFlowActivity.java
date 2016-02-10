@@ -45,7 +45,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.product_cover_flow);
+        setContentView(R.layout.product_cover_flow_activity);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
@@ -72,7 +72,6 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
             @Override
             public void onScrolling() {
-
             }
         });
 
@@ -91,7 +90,9 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), productItem.getTitle(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FavoritesCoverFlowActivity.this, ProductDetailActivity.class);
+                intent.putExtra("productItem", productItem);
+                startActivity(intent);
             }
         });
 

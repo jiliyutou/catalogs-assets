@@ -45,7 +45,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
 
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.person_item, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.contact_person_item, null);
             holder.contactsListView = (ListView) convertView.findViewById(R.id.contact_listview);
             holder.person_name = (TextView) convertView.findViewById(R.id.person_name);
             holder.person_photo = (ImageView) convertView.findViewById(R.id.person_photo);

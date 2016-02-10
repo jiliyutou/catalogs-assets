@@ -19,9 +19,6 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 public class ProductImageViewActivity extends Activity{
 
-    private TextView share;
-    private TextView favorite;
-
     private PhotoViewAttacher mPhotoViewAttacher;
 
     @Override

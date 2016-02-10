@@ -32,12 +32,15 @@ public class MainApplication extends Application {
     private final static String CONTACT = "contact/";
     private final static String NEW_PRODUCTS =  "new_products/";
     private final static String THREED_PRODUCTS = "threed_products/";
+    private final static String PRODUCT_DETAIL = "product_detail/";
+
 
     public final static String RESOURCE_ROOT = "/004_meiya/";
     public final static String LOGIN_CODES_PATH = RESOURCE_ROOT + LOGIN_CODES;
     public final static String NEW_PRODUCTS_PATH = RESOURCE_ROOT + NEW_PRODUCTS;
     public final static String THREED_PRODUCTS_PATH = RESOURCE_ROOT + THREED_PRODUCTS;
-    public final static String CONTACT_PATH = RESOURCE_ROOT + CONTACT+"contact.json";
+    public final static String CONTACT_PATH = RESOURCE_ROOT + CONTACT + "contact.json";
+    public final static String PRODUCT_DETAIL_PATH = RESOURCE_ROOT + PRODUCT_DETAIL;
     public final static String UPYUN_REQUEST_HEADER = "http://" + SERVER_NAME + DOMAIN + RESOURCE_ROOT;
     public final static String NEW_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + NEW_PRODUCTS;
     public final static String THREED_PRODUCTS_UPYUN_URL = UPYUN_REQUEST_HEADER + THREED_PRODUCTS;

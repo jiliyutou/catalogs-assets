@@ -53,7 +53,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.product_cover_flow);
+        setContentView(R.layout.product_cover_flow_activity);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
@@ -72,13 +72,13 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         mTitle.setInAnimation(in);
         mTitle.setOutAnimation(out);
 
-        mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         Bundle bundle = getIntent().getExtras();
         final ArrayList<ProductItem> data =  (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
         String title = bundle.getString("title");
         initUI(title);
-        mCoverFlow.setAdapter(new CoverFlowAdapter(ProductCoverFlowActivity.this, 0, data));
 
+        mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
+        mCoverFlow.setAdapter(new CoverFlowAdapter(ProductCoverFlowActivity.this, 0, data));
         mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
@@ -114,7 +114,9 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),productItem.getTitle(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ProductCoverFlowActivity.this, ProductDetailActivity.class);
+                intent.putExtra("productItem", productItem);
+                startActivity(intent);
             }
         });
 

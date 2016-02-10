@@ -131,7 +131,6 @@ public class CatalogsActivity extends Activity {
             public void onClick(View v) {
                 Intent favorites = new Intent(CatalogsActivity.this, FavoritesGridActivity.class);
                 startActivity(favorites);
-
             }
         });
 
@@ -171,5 +170,4 @@ public class CatalogsActivity extends Activity {
             }
         });
     }
-
 }
