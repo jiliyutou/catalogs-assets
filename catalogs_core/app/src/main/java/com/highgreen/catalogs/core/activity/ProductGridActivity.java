@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.adapter.ProductGridAdapter;
@@ -100,7 +101,7 @@ public class ProductGridActivity extends Activity {
             List<UpYun.FolderItem> folderItemList = MainApplication.getUpYun().readDir(params[0]);
             List<ProductItem> productItemList = new ArrayList<ProductItem>();
 
-            if (folderItemList != null && folderItemList.size() > 1) {
+            if (folderItemList != null && !folderItemList.isEmpty()) {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
                     String name = item.name.split("\\.")[0];
@@ -120,23 +121,27 @@ public class ProductGridActivity extends Activity {
         @Override
         protected void onPostExecute(List<ProductItem> productItems) {
             super.onPostExecute(productItems);
-            data = productItems;
-            productGridAdapter = new ProductGridAdapter(ProductGridActivity.this,R.layout.product_grid_item,data);
-            gridView.setAdapter(productGridAdapter);
+            if (productItems != null && !productItems.isEmpty()) {
+                data = productItems;
+                productGridAdapter = new ProductGridAdapter(ProductGridActivity.this, R.layout.product_grid_item, data);
+                gridView.setAdapter(productGridAdapter);
 
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ProductItem item = data.get(position);
-                    Intent intent = new Intent(ProductGridActivity.this, ProductCoverFlowActivity.class);
-                    intent.putExtra("title", title);
-                    intent.putExtra("item_name",item.getTitle());
-                    intent.putExtra("currentPath", currentPath);
-                    intent.putExtra("httpHeader",httpHeader);
-                    intent.putExtra("productItemList", (Serializable) data);
-                    startActivity(intent);
-                }
-            });
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ProductItem item = data.get(position);
+                        Intent intent = new Intent(ProductGridActivity.this, ProductCoverFlowActivity.class);
+                        intent.putExtra("title", title);
+                        intent.putExtra("item_name", item.getTitle());
+                        intent.putExtra("currentPath", currentPath);
+                        intent.putExtra("httpHeader", httpHeader);
+                        intent.putExtra("productItemList", (Serializable) data);
+                        startActivity(intent);
+                    }
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "该目录下无产品", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
