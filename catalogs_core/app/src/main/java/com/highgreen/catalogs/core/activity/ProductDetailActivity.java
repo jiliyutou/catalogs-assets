@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.ParamKVPair;
@@ -75,7 +76,7 @@ public class ProductDetailActivity extends Activity {
                 String detail = MainApplication.getUpYun().readFile(detailUrl);
                 productDetailInfo = new Gson().fromJson(detail, ProductDetailInfo.class);
                 Log.i(TAG, detail);
-            }catch (Exception e){
+            } catch (Exception e){
                 Log.i(TAG, e.toString());
             }
             return productDetailInfo;

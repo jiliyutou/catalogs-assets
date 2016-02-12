@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
@@ -92,7 +93,7 @@ public class ThreeDProductGridActivity extends Activity {
             List<UpYun.FolderItem> folderItemList = MainApplication.getUpYun().readDir(currentPath);
             List<ProductItem> productItemList = new ArrayList<ProductItem>();
 
-            if (folderItemList != null && folderItemList.size() > 1) {
+            if (folderItemList != null && !folderItemList.isEmpty()) {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
                     if (!item.name.split("\\.")[1].equals("html")){
@@ -109,20 +110,24 @@ public class ThreeDProductGridActivity extends Activity {
         @Override
         protected void onPostExecute(List<ProductItem> productItems) {
             super.onPostExecute(productItems);
-            data = productItems;
-            productGridAdapter = new ProductGridAdapter(ThreeDProductGridActivity.this, R.layout.product_grid_item, data);
-            gridView.setAdapter(productGridAdapter);
+            if (productItems != null && !productItems.isEmpty()) {
+                data = productItems;
+                productGridAdapter = new ProductGridAdapter(ThreeDProductGridActivity.this, R.layout.product_grid_item, data);
+                gridView.setAdapter(productGridAdapter);
 
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ProductItem item = data.get(position);
-                    Intent intent = new Intent(ThreeDProductGridActivity.this, ThreeDProductWebViewActivity.class);
-                    intent.putExtra("url",httpHeader + item.getTitle()+".html");
-                    intent.putExtra("title", item.getTitle());
-                    startActivity(intent);
-                }
-            });
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ProductItem item = data.get(position);
+                        Intent intent = new Intent(ThreeDProductGridActivity.this, ThreeDProductWebViewActivity.class);
+                        intent.putExtra("url", httpHeader + item.getTitle() + ".html");
+                        intent.putExtra("title", item.getTitle());
+                        startActivity(intent);
+                    }
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "目前无3D图片产品展示", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
