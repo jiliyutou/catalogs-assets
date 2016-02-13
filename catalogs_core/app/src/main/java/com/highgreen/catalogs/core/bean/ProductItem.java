@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class ProductItem implements Serializable {
     private String imageUrl;
     private String title;
+    private String suffix3D;
 
     public ProductItem() {
     }
@@ -31,5 +32,13 @@ public class ProductItem implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSuffix3D() {
+        return suffix3D;
+    }
+
+    public void setSuffix3D(String suffix3D) {
+        this.suffix3D = suffix3D;
     }
 }

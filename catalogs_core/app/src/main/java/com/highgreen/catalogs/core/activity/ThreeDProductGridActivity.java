@@ -96,10 +96,24 @@ public class ThreeDProductGridActivity extends Activity {
             if (folderItemList != null && !folderItemList.isEmpty()) {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
-                    if (!item.name.split("\\.")[1].equals("html")){
+                    if (!item.name.split("\\.")[1].equals("html") && !item.name.split("\\.")[1].equals("gif")) {
+                        String suffix = "jpg";
+                        for (UpYun.FolderItem element : folderItemList) {
+                            String s[] = element.name.split("\\.");
+                            if(item.name.split("\\.")[0].equals(s[0])) {
+                                if(s[1].equals("html")) {
+                                    suffix = "html";
+                                    break;
+                                } else if(s[1].equals("gif")) {
+                                    suffix = "gif";
+                                    break;
+                                }
+                            }
+                        }
                         ProductItem productItem = new ProductItem();
-                        productItem.setImageUrl(httpHeader +item.name);
+                        productItem.setImageUrl(httpHeader + item.name);
                         productItem.setTitle(item.name.split("\\.")[0]);
+                        productItem.setSuffix3D(suffix);
                         productItemList.add(productItem);
                     }
                 }
@@ -120,7 +134,7 @@ public class ThreeDProductGridActivity extends Activity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ProductItem item = data.get(position);
                         Intent intent = new Intent(ThreeDProductGridActivity.this, ThreeDProductWebViewActivity.class);
-                        intent.putExtra("url", httpHeader + item.getTitle() + ".html");
+                        intent.putExtra("url", httpHeader + item.getTitle() + "." + item.getSuffix3D());
                         intent.putExtra("title", item.getTitle());
                         startActivity(intent);
                     }
