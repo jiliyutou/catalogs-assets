@@ -59,7 +59,7 @@ public class MainApplication extends Application {
         Log.i(TAG, UserSharedPreference.getPassword(mContext) + " " + UserSharedPreference.getLoginOnce(mContext));
         if (UserSharedPreference.getPassword(mContext) == null) {
             UserSharedPreference.updatePassword(mContext, LOGIN_PWD);
-            UserSharedPreference.updateLoginOnce(mContext, false);
+            UserSharedPreference.updateLoginOnce(mContext, true);   //Tips: true->login without password; false->login with password
         }
         Log.i(TAG, "after " + UserSharedPreference.getPassword(mContext) + " " + UserSharedPreference.getLoginOnce(mContext));
 

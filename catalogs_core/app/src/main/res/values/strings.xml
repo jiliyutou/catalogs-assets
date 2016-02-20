@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meiya</string>
+    <string name="app_name">Rouka</string>
     <string name="cn_language">语言</string>
     <string name="cn_product_list">产品目录</string>
     <string name="cn_new_product_list">新产品</string>
@@ -29,8 +29,8 @@
     <string name="new_product_title">新产品</string>
     <string name="threeD_product_title">3D展示</string>
 
-    <string name="company_name">Meiya Sanitary Ware Co., Ltd</string>
-    <string name="company_introduction">Estalished in 1984, Wenzhou Meiya Sanitary Wares Co., Ltd. is a professional manufacturer and supplier for faucets, bathroom accessories and sanitary cabinet.\n\nMeiya openned up business into international market since 1990s.To keep pace with development, Meiya built new plant in 2007, imported advanced German equipment, strengthened management, expanded investment for research and development and increased production lines to improve production capcity comprehensively. Under the leadership of Mr. Xia and jonit efforts of all staff, Meiya faucet and sanitary wares have been widely spreaded in household and commercial applications worldwide.\n\nAs an export-oriented manufactory, Meiya have been authernticated by Well-known Sanitary Brand in China and ISO9001 International Quality System. Meiya faucet have been certificated by ACS, CE, CUPC, Watermark and other certificates to cater to needs in different market. Besides, Meiya provides OEM serviece as well. Reliable quality, reasonable price and professional service won Meiya a good reputation in Western Europe, Eastern Europe, South America, Middle East and South Africa and etc..</string>
+    <string name="company_name">温州市乐家五金制品有限公司</string>
+    <string name="company_introduction">温州市乐家五金制品有限公司是专业生产五金挂件的企业。企业自创办以来，秉承传统的生产技艺，吸取国内外卫浴精华，一直引导国内洁具的潮流。创业至今，乐家卫浴发展迅速，产品质量也得到稳定和提高，同时乐家人十分注重洁具的质量及设计开发，企业聘请专业人员，吸收国内外的洁具精华，制造出符合潮流，适合大众的洁具经典。\n\n“质量第一，信誉第一，用户至上”，这是乐家人的宗旨。自生产第一个卫浴系列以来，乐家人就开始采取严格的品质管理，无论内芯，壳体，都一丝不苟。如今，企业更是以ISO9001质量体系来推行品质管理，保证客的利益。在激烈的市场竞争中，乐家卫浴以优质的生产和完善的服务，满足客户的需求。乐家卫浴遍布全国各省大城市，自治区，建立完整的营销网络，使售后服务得以保证，并远销东南亚、欧美等国家地区。同时赢得了广大用户的深深的喜爱。\n\n精心制造，精益求精，乐家人愿以精致的洁具为大众创造更加精彩的生活。</string>
 
 </resources>
 
