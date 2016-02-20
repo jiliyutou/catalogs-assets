@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meiya</string>
+    <string name="app_name">Tetch</string>
     <string name="cn_language">语言</string>
     <string name="cn_product_list">产品目录</string>
     <string name="cn_new_product_list">新产品</string>
