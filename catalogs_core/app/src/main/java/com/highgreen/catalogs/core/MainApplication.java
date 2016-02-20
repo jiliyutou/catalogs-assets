@@ -35,7 +35,7 @@ public class MainApplication extends Application {
     private final static String PRODUCT_DETAIL = "product_detail/";
 
 
-    public final static String RESOURCE_ROOT = "/004_meiya/";
+    public final static String RESOURCE_ROOT = "/005_tetch/";
     public final static String LOGIN_CODES_PATH = RESOURCE_ROOT + LOGIN_CODES;
     public final static String NEW_PRODUCTS_PATH = RESOURCE_ROOT + NEW_PRODUCTS;
     public final static String THREED_PRODUCTS_PATH = RESOURCE_ROOT + THREED_PRODUCTS;
