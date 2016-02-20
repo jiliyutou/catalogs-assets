@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meiya</string>
+    <string name="app_name">Koda</string>
     <string name="cn_language">语言</string>
     <string name="cn_product_list">产品目录</string>
     <string name="cn_new_product_list">新产品</string>
@@ -29,8 +29,8 @@
     <string name="new_product_title">新产品</string>
     <string name="threeD_product_title">3D展示</string>
 
-    <string name="company_name">Meiya Sanitary Ware Co., Ltd</string>
-    <string name="company_introduction">Estalished in 1984, Wenzhou Meiya Sanitary Wares Co., Ltd. is a professional manufacturer and supplier for faucets, bathroom accessories and sanitary cabinet.\n\nMeiya openned up business into international market since 1990s.To keep pace with development, Meiya built new plant in 2007, imported advanced German equipment, strengthened management, expanded investment for research and development and increased production lines to improve production capcity comprehensively. Under the leadership of Mr. Xia and jonit efforts of all staff, Meiya faucet and sanitary wares have been widely spreaded in household and commercial applications worldwide.\n\nAs an export-oriented manufactory, Meiya have been authernticated by Well-known Sanitary Brand in China and ISO9001 International Quality System. Meiya faucet have been certificated by ACS, CE, CUPC, Watermark and other certificates to cater to needs in different market. Besides, Meiya provides OEM serviece as well. Reliable quality, reasonable price and professional service won Meiya a good reputation in Western Europe, Eastern Europe, South America, Middle East and South Africa and etc..</string>
+    <string name="company_name">温州市广达工艺玻璃厂</string>
+    <string name="company_introduction">温州市广达工艺玻璃厂是一家以专业从事生产、加工和销售装饰玻璃的企业。专业生产工艺玻璃耗材：镜片、镜条、水晶宝石装饰、水晶贴片、水晶柱、琉璃、英式镶嵌材料等。厂里拥有先进生产设备和技术工艺，生产各种工艺玻璃。产品质量过硬选材精良，每一道工序都经过严格把关，奉承“质量至上，诚信服务”的创业宗旨。</string>
 
 </resources>
 
