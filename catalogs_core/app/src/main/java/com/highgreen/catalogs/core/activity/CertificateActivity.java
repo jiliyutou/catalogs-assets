@@ -16,11 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.highgreen.catalogs.core.MainApplication;
-import com.highgreen.catalogs.core.bean.ProductItem;
-import com.highgreen.catalogs.core.upyun.UpYun;
 import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.bean.ProductItem;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -38,7 +37,7 @@ import java.util.List;
 /**
  * Created by tihong on 16-1-24.
  */
-public class CertificateActivity extends Activity{
+public class CertificateActivity extends Activity {
 
     private final static String TAG = "CertificateActivity";
     private final static String certificate_folder_name = "certificate";
@@ -92,7 +91,7 @@ public class CertificateActivity extends Activity{
         middle_text_title.setText(R.string.cn_product_certificate);
     }
 
-    private class GetCertificateTask extends AsyncTask<String, Void, List<String>>{
+    private class GetCertificateTask extends AsyncTask<String, Void, List<String>> {
 
         @Override
         protected List<String> doInBackground(String... params) {
@@ -101,8 +100,8 @@ public class CertificateActivity extends Activity{
             try {
                 String[] paths = getAssets().list(params[0]);
                 List<String> list = new ArrayList<String>(Arrays.asList(paths));
-                for (String file : list){
-                    String url = "assets://"+params[0]+"/"+file;
+                for (String file : list) {
+                    String url = "assets://" + params[0] + "/" + file;
                     urls.add(url);
                     Log.i(TAG, file);
                 }
@@ -127,6 +126,10 @@ public class CertificateActivity extends Activity{
                     startActivity(intent);
                 }
             });
+
+            if (urls == null || urls.size() == 0) {
+                Toast.makeText(getApplicationContext(),R.string.no_certificate,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
