@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.bean.ProductItem;
@@ -127,6 +128,11 @@ public class CertificateActivity extends Activity{
                     startActivity(intent);
                 }
             });
+
+            if (urls == null || urls.size() == 0) {
+                Toast.makeText(getApplicationContext(),"没有证书", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
