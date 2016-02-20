@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meiya</string>
+    <string name="app_name">亿家居</string>
     <string name="cn_language">语言</string>
     <string name="cn_product_list">产品目录</string>
     <string name="cn_new_product_list">新产品</string>
@@ -29,8 +29,8 @@
     <string name="new_product_title">新产品</string>
     <string name="threeD_product_title">3D展示</string>
 
-    <string name="company_name">Meiya Sanitary Ware Co., Ltd</string>
-    <string name="company_introduction">Estalished in 1984, Wenzhou Meiya Sanitary Wares Co., Ltd. is a professional manufacturer and supplier for faucets, bathroom accessories and sanitary cabinet.\n\nMeiya openned up business into international market since 1990s.To keep pace with development, Meiya built new plant in 2007, imported advanced German equipment, strengthened management, expanded investment for research and development and increased production lines to improve production capcity comprehensively. Under the leadership of Mr. Xia and jonit efforts of all staff, Meiya faucet and sanitary wares have been widely spreaded in household and commercial applications worldwide.\n\nAs an export-oriented manufactory, Meiya have been authernticated by Well-known Sanitary Brand in China and ISO9001 International Quality System. Meiya faucet have been certificated by ACS, CE, CUPC, Watermark and other certificates to cater to needs in different market. Besides, Meiya provides OEM serviece as well. Reliable quality, reasonable price and professional service won Meiya a good reputation in Western Europe, Eastern Europe, South America, Middle East and South Africa and etc..</string>
+    <string name="company_name">亿家居卫浴有限公司</string>
+    <string name="company_introduction">佛山市亿家居卫浴有限公司——位于广东佛山市禅城区。公司以专业生产高品质的橡木浴室柜为主(产品采用欧式风格，款式新颖简洁，并配有陶瓷洁具和五金龙头配件、淋浴房等，产品畅销全国各地，业务遍布国内外。\n\n由于近几年发展，公司一直积极开拓海外市场，力求把中国的产品推向世界，打造中国质优产品企业的新篇章。公司自成立以来，以其过硬的产品质量、优秀的服务模式，在广大消费者中有良好的口碑。\n\n多年来公司坚持“以质量求生存、靠信誉求发展”的经营理念，以创造名牌产品为最终目的，竭诚为社会和用户提供优质的产品及满意的服务。在全体亿家居员工的共同努力下，我们相信不久的将来亿家居定能越做越强，力争将其发展为全球最大、品种齐全的中国名优企业，公司将与广大消费者一起共创双赢。</string>
 
 </resources>
 
