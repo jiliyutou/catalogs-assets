@@ -96,15 +96,15 @@ public class ThreeDProductGridActivity extends Activity {
             if (folderItemList != null && !folderItemList.isEmpty()) {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
-                    if (!item.name.split("\\.")[1].equals("html") && !item.name.split("\\.")[1].equals("gif")) {
+                    if (!item.name.split("\\.")[1].equalsIgnoreCase("html") && !item.name.split("\\.")[1].equalsIgnoreCase("gif")) {
                         String suffix = "jpg";
                         for (UpYun.FolderItem element : folderItemList) {
                             String s[] = element.name.split("\\.");
-                            if(item.name.split("\\.")[0].equals(s[0])) {
+                            if(item.name.split("\\.")[0].equalsIgnoreCase(s[0])) {
                                 if(s[1].equals("html")) {
                                     suffix = "html";
                                     break;
-                                } else if(s[1].equals("gif")) {
+                                } else if(s[1].equalsIgnoreCase("gif")) {
                                     suffix = "gif";
                                     break;
                                 }
