@@ -1,11 +1,14 @@
 package com.highgreen.catalogs.core.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.bean.ParamKVPair;
@@ -17,8 +20,10 @@ import java.util.List;
  */
 public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
 
+    private Context mContext;
     public ContactItemAdapter(Context context, int resource, List<ParamKVPair> data) {
         super(context, resource, data);
+        mContext = context;
     }
 
     @Override
@@ -36,10 +41,42 @@ public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        ParamKVPair item = getItem(position);
+        final ParamKVPair item = getItem(position);
         holder.name.setText(item.getParamKey()+" : ");
         holder.value.setText(item.getParamValue());
-
+        if (item.getParamKey().equals("Email")){
+            holder.value.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");
+                    i.putExtra(Intent.EXTRA_EMAIL, new String[]{item.getParamValue()});
+                    try {
+                        mContext.startActivity(Intent.createChooser(i, "Send mail..."));
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        if (item.getParamKey().equals("Phone")){
+            holder.value.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent("android.intent.action.CALL",Uri.parse("tel:"+item.getParamValue()));
+                    mContext.startActivity(intent);
+                }
+            });
+        }
+        if (item.getParamKey().equals("Mobile")){
+            holder.value.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent("android.intent.action.CALL",Uri.parse("tel:"+item.getParamValue()));
+                    mContext.startActivity(intent);
+                }
+            });
+        }
         return convertView;
     }
 
