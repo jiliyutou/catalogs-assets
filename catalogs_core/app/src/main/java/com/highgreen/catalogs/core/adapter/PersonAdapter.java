@@ -28,9 +28,11 @@ import java.util.List;
 public class PersonAdapter extends ArrayAdapter<Person> {
     private DisplayImageOptions options;
     private ViewHolder holder = null;
+    private Context mContext;
 
     public PersonAdapter(Context context, int resource, List<Person> data) {
         super(context, resource, data);
+        mContext = context;
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
@@ -55,7 +57,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         }
         Person person = getItem(position);
         holder.person_name.setText(person.getName());
-        ContactItemAdapter contactItemAdapter = new ContactItemAdapter(getContext(), 0, person.getContacts());
+        ContactItemAdapter contactItemAdapter = new ContactItemAdapter(mContext, 0, person.getContacts());
         holder.contactsListView.setAdapter(contactItemAdapter);
         setListViewHeightBasedOnChildren(holder.contactsListView);
 
