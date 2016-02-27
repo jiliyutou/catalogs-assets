@@ -44,7 +44,7 @@ public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
         final ParamKVPair item = getItem(position);
         holder.name.setText(item.getParamKey()+" : ");
         holder.value.setText(item.getParamValue());
-        if (item.getParamKey().equals("Email")){
+        if (item.getParamKey().equalsIgnoreCase("email")){
             holder.value.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -52,23 +52,14 @@ public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL, new String[]{item.getParamValue()});
                     try {
-                        mContext.startActivity(Intent.createChooser(i, "Send mail..."));
+                        mContext.startActivity(Intent.createChooser(i, "Send email..."));
                     } catch (android.content.ActivityNotFoundException ex) {
                         Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
-        if (item.getParamKey().equals("Phone")){
-            holder.value.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent("android.intent.action.CALL",Uri.parse("tel:"+item.getParamValue()));
-                    mContext.startActivity(intent);
-                }
-            });
-        }
-        if (item.getParamKey().equals("Mobile")){
+        if (item.getParamKey().equalsIgnoreCase("phone") || item.getParamValue().equalsIgnoreCase("mobile")){
             holder.value.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
