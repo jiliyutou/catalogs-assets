@@ -59,7 +59,7 @@ public class ContactItemAdapter extends ArrayAdapter<ParamKVPair> {
                 }
             });
         }
-        if (item.getParamKey().equalsIgnoreCase("phone") || item.getParamValue().equalsIgnoreCase("mobile")){
+        if (item.getParamKey().equalsIgnoreCase("phone") || item.getParamKey().equalsIgnoreCase("mobile")){
             holder.value.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
