@@ -91,7 +91,7 @@ public class LoginActivity extends Activity {
             List<LoginCodeItem> loginCodeItemList = loginCodes.getLogin_codes();
             if (loginCodeItemList!=null){
                 for (LoginCodeItem code : loginCodeItemList){
-                    if (code.getCode().equals(password.trim())){
+                    if (code.isValid()&&code.getCode().equals(password.trim())){
                         code.setValid(false);
                         new ValidLoginCodeTask().execute();
                         return true;
