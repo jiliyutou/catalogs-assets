@@ -48,6 +48,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     private ImageView favorite;
     private DataBaseManager mDataBaseManager;
     private TextSwitcher mTitle;
+    private int init_position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
 
-        mTitle = (TextSwitcher)findViewById(R.id.title);
+        mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
@@ -73,8 +74,9 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         mTitle.setOutAnimation(out);
 
         Bundle bundle = getIntent().getExtras();
-        final ArrayList<ProductItem> data =  (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
+        final ArrayList<ProductItem> data = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
         String title = bundle.getString("title");
+        init_position = bundle.getInt("init_position");
         initUI(title);
 
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
@@ -86,9 +88,9 @@ public class ProductCoverFlowActivity extends FragmentActivity {
                 mTitle.setText(productItem.getTitle());
                 Log.i("mCoverFlow", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
-                if (item != null){
+                if (item != null) {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
-                }else {
+                } else {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
             }
@@ -109,7 +111,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        detail = (ImageView)findViewById(R.id.detail);
+        detail = (ImageView) findViewById(R.id.detail);
         detail.setVisibility(View.VISIBLE);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +122,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        share = (ImageView)findViewById(R.id.share);
+        share = (ImageView) findViewById(R.id.share);
         share.setVisibility(View.VISIBLE);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,21 +138,21 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        favorite = (ImageView)findViewById(R.id.favorite);
+        favorite = (ImageView) findViewById(R.id.favorite);
         favorite.setVisibility(View.VISIBLE);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
 
-                if (item != null){
+                if (item != null) {
                     mDataBaseManager.delete(productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
-                    Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(getApplicationContext(), "取消收藏", Toast.LENGTH_SHORT).show();
+                } else {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
-                    Toast.makeText(getApplicationContext(),"已收藏",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -200,4 +202,13 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         super.onDestroy();
         mDataBaseManager.close();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("mCoverFlow", "init_position = " + init_position);
+        //TODO the first select is scroll to last
+        mCoverFlow.scrollToPosition(init_position);
+    }
+
 }
