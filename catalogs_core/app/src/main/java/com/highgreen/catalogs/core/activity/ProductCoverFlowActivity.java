@@ -49,6 +49,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     private DataBaseManager mDataBaseManager;
     private TextSwitcher mTitle;
     private int initPosition;
+    private int positionCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         Bundle bundle = getIntent().getExtras();
         final ArrayList<ProductItem> data =  (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
         initPosition = bundle.getInt("initPosition");
+        positionCount = bundle.getInt("positionCount");
         String title = bundle.getString("title");
         initUI(title);
 
@@ -207,6 +209,12 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         //TODO: Bug fix, initPosition==0
-        mCoverFlow.scrollToPosition(initPosition);
+        if(initPosition == 0) {
+            Log.i("mCoverFlow", "position = " + initPosition);
+            mCoverFlow.scrollToPosition(initPosition + positionCount);
+        } else {
+            mCoverFlow.scrollToPosition(initPosition);
+            Log.i("mCoverFlow", "position = " + initPosition);
+        }
     }
 }

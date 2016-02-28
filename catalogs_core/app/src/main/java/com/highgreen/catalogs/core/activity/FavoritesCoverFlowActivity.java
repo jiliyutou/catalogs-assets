@@ -47,6 +47,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     private DataBaseManager mDataBaseManager;
     private TextSwitcher mTitle;
     private int initPosition;
+    private int positionCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         productItem = (ProductItem) getIntent().getSerializableExtra("productItem");
         productItemList = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productList");
         initPosition = getIntent().getExtras().getInt("initPosition");
+        positionCount = getIntent().getExtras().getInt("positionCount");
 
         initUI();
         mCoverFlow.setAdapter(new CoverFlowAdapter(FavoritesCoverFlowActivity.this, 0, productItemList));
@@ -196,17 +198,13 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         //TODO: Bug fix, initPosition==0
-        mCoverFlow.scrollToPosition(initPosition);
-//        int index = 0;
-//        for (ProductItem item : productItemList) {
-//            if (item.getImageUrl().equals(productItem.getImageUrl())) {
-//                Log.i("FavoritesCover", " index = " + index);
-//                mCoverFlow.setSelection(index);
-//                break;
-//            } else {
-//                index++;
-//            }
-//        }
+        if(initPosition == 0) {
+            Log.i("mCoverFlow", "position = " + initPosition);
+            mCoverFlow.scrollToPosition(initPosition + positionCount);
+        } else {
+            mCoverFlow.scrollToPosition(initPosition);
+            Log.i("mCoverFlow", "position = " + initPosition);
+        }
     }
 
     @Override

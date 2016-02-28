@@ -137,6 +137,7 @@ public class ProductGridActivity extends Activity {
                         intent.putExtra("httpHeader", httpHeader);
                         intent.putExtra("productItemList", (Serializable) data);
                         intent.putExtra("initPosition", position);
+                        intent.putExtra("positionCount", data.size());
                         startActivity(intent);
                     }
                 });

@@ -60,6 +60,7 @@ public class FavoritesGridActivity extends Activity {
                 intent.putExtra("productItem", productItem);
                 intent.putExtra("productList", (Serializable) productItemList);
                 intent.putExtra("initPosition", position);
+                intent.putExtra("positionCount", productItemList.size());
                 startActivity(intent);
             }
         });
