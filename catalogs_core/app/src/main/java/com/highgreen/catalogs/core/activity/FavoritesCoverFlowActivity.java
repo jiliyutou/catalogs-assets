@@ -14,6 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TextSwitcher;
+import android.widget.ViewSwitcher;
+import android.view.LayoutInflater;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.highgreen.catalogs.core.R;
 import com.highgreen.catalogs.core.adapter.CoverFlowAdapter;
@@ -40,6 +45,9 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     private ImageView share;
     private ImageView favorite;
     private DataBaseManager mDataBaseManager;
+    private TextSwitcher mTitle;
+    private int initPosition;
+    private int positionCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +58,25 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
 
+        mTitle = (TextSwitcher) findViewById(R.id.title);
+        mTitle.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                LayoutInflater inflater = LayoutInflater.from(FavoritesCoverFlowActivity.this);
+                TextView textView = (TextView) inflater.inflate(R.layout.coverflow_title_item, null);
+                return textView;
+            }
+        });
+        Animation in = AnimationUtils.loadAnimation(this, R.anim.slide_in_top);
+        Animation out = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
+        mTitle.setInAnimation(in);
+        mTitle.setOutAnimation(out);
+
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         productItem = (ProductItem) getIntent().getSerializableExtra("productItem");
         productItemList = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productList");
+        initPosition = getIntent().getExtras().getInt("initPosition");
+        positionCount = getIntent().getExtras().getInt("positionCount");
 
         initUI();
         mCoverFlow.setAdapter(new CoverFlowAdapter(FavoritesCoverFlowActivity.this, 0, productItemList));
@@ -62,6 +86,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
             public void onScrolledToPosition(int position) {
                 productItem = productItemList.get(position);
                 Log.i("FavoritesCover", "position = " + position);
+                mTitle.setText(productItem.getTitle());
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null) {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
@@ -72,6 +97,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
             @Override
             public void onScrolling() {
+                mTitle.setText("");
             }
         });
 
@@ -171,15 +197,13 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int index = 0;
-        for (ProductItem item : productItemList) {
-            if (item.getImageUrl().equals(productItem.getImageUrl())) {
-                Log.i("FavoritesCover", " index = " + index);
-                mCoverFlow.setSelection(index);
-                break;
-            } else {
-                index++;
-            }
+        //TODO: Bug fix, initPosition==0
+        if (initPosition == 0) {
+            Log.i("mCoverFlow", "position = " + initPosition);
+            mCoverFlow.scrollToPosition(initPosition + positionCount);
+        } else {
+            mCoverFlow.scrollToPosition(initPosition);
+            Log.i("mCoverFlow", "position = " + initPosition);
         }
     }
 
