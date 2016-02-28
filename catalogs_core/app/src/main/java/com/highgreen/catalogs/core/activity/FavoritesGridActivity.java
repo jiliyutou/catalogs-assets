@@ -59,6 +59,7 @@ public class FavoritesGridActivity extends Activity {
                 Intent intent = new Intent(FavoritesGridActivity.this, FavoritesCoverFlowActivity.class);
                 intent.putExtra("productItem", productItem);
                 intent.putExtra("productList", (Serializable) productItemList);
+                intent.putExtra("initPosition", position);
                 startActivity(intent);
             }
         });
