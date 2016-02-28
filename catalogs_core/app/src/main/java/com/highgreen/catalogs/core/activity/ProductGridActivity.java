@@ -105,8 +105,8 @@ public class ProductGridActivity extends Activity {
                 for (UpYun.FolderItem item : folderItemList) {
                     System.out.println(item);
                     String name = item.name.split("\\.")[0];
-                    if (!params[1].equals(name)){
-                        String url = params[2]+item.name;
+                    if (!params[1].equals(name)) {
+                        String url = params[2] + item.name;
                         System.out.println(url);
                         ProductItem productItem = new ProductItem();
                         productItem.setImageUrl(url);
@@ -136,6 +136,8 @@ public class ProductGridActivity extends Activity {
                         intent.putExtra("currentPath", currentPath);
                         intent.putExtra("httpHeader", httpHeader);
                         intent.putExtra("productItemList", (Serializable) data);
+                        intent.putExtra("initPosition", position);
+                        intent.putExtra("positionCount", data.size());
                         startActivity(intent);
                     }
                 });
