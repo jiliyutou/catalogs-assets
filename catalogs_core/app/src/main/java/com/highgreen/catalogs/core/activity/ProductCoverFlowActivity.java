@@ -48,6 +48,8 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     private ImageView favorite;
     private DataBaseManager mDataBaseManager;
     private TextSwitcher mTitle;
+    private int initPosition;
+    private int positionCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
 
-        mTitle = (TextSwitcher)findViewById(R.id.title);
+        mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
@@ -73,7 +75,9 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         mTitle.setOutAnimation(out);
 
         Bundle bundle = getIntent().getExtras();
-        final ArrayList<ProductItem> data =  (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
+        final ArrayList<ProductItem> data = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
+        initPosition = bundle.getInt("initPosition");
+        positionCount = bundle.getInt("positionCount");
         String title = bundle.getString("title");
         initUI(title);
 
@@ -86,9 +90,9 @@ public class ProductCoverFlowActivity extends FragmentActivity {
                 mTitle.setText(productItem.getTitle());
                 Log.i("mCoverFlow", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
-                if (item != null){
+                if (item != null) {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
-                }else {
+                } else {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
             }
@@ -109,7 +113,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        detail = (ImageView)findViewById(R.id.detail);
+        detail = (ImageView) findViewById(R.id.detail);
         detail.setVisibility(View.VISIBLE);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +124,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        share = (ImageView)findViewById(R.id.share);
+        share = (ImageView) findViewById(R.id.share);
         share.setVisibility(View.VISIBLE);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,26 +140,24 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             }
         });
 
-        favorite = (ImageView)findViewById(R.id.favorite);
+        favorite = (ImageView) findViewById(R.id.favorite);
         favorite.setVisibility(View.VISIBLE);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
 
-                if (item != null){
+                if (item != null) {
                     mDataBaseManager.delete(productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
-                    Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(getApplicationContext(), "取消收藏", Toast.LENGTH_SHORT).show();
+                } else {
                     mDataBaseManager.insert(productItem.getTitle(), productItem.getImageUrl());
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
-                    Toast.makeText(getApplicationContext(),"已收藏",Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -199,5 +201,18 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         mDataBaseManager.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO: Bug fix, initPosition==0
+        if (initPosition == 0) {
+            Log.i("mCoverFlow", "position = " + initPosition);
+            mCoverFlow.scrollToPosition(initPosition + positionCount);
+        } else {
+            mCoverFlow.scrollToPosition(initPosition);
+            Log.i("mCoverFlow", "position = " + initPosition);
+        }
     }
 }
