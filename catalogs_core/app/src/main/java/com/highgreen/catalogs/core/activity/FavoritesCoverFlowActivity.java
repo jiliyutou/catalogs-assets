@@ -48,6 +48,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     private int initPosition;
     private int positionCount;
     private int realPosition;
+    
     private CoverFlowAdapter adapter;
     private ArrayList<ProductItem> productItemList = null;
     private ArrayList<ProductItem> data = new ArrayList<ProductItem>();
