@@ -43,7 +43,7 @@ public class ProductGridAdapter extends ArrayAdapter<ProductItem> {
                 .cacheOnDisc(true)
                 .bitmapConfig(Bitmap.Config.ARGB_8888)
                 .displayer(new RoundedBitmapDisplayer(10))
-                .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+                //.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
                 .build();
     }
 

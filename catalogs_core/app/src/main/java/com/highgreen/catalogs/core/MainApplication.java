@@ -97,8 +97,8 @@ public class MainApplication extends Application {
                 .threadPoolSize(5)
                 .tasksProcessingOrder(QueueProcessingType.FIFO) // default
                 .denyCacheImageMultipleSizesInMemory()
-                .memoryCache(new LruMemoryCache(50 * 1024 * 1024))
-                .memoryCacheSize(50 * 1024 * 1024)
+                .memoryCache(new LruMemoryCache(20 * 1024 * 1024))
+                .memoryCacheSize(20 * 1024 * 1024)
                 .diskCache(new UnlimitedDiskCache(cacheDir)) // default
                 .diskCacheSize(100 * 1024 * 1024)
                 .diskCacheFileCount(1000)

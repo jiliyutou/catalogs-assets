@@ -33,7 +33,7 @@ public class CoverFlowAdapter extends ArrayAdapter<ProductItem> {
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
                 .bitmapConfig(Bitmap.Config.ARGB_8888)
-                .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+                //.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
                 .build();
 	}
 
