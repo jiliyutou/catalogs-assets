@@ -39,7 +39,6 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
     private FeatureCoverFlow mCoverFlow;
     private ProductItem productItem;
-    private ArrayList<ProductItem> productItemList;
 
     private ImageView detail;
     private ImageView share;
@@ -48,6 +47,11 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     private TextSwitcher mTitle;
     private int initPosition;
     private int positionCount;
+    private int realPosition;
+
+    private CoverFlowAdapter adapter;
+    private ArrayList<ProductItem> productItemList = null;
+    private ArrayList<ProductItem> data = new ArrayList<ProductItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
 
         mDataBaseManager = new DataBaseManager(getApplicationContext());
 
-        mTitle = (TextSwitcher)findViewById(R.id.title);
+        mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
@@ -75,24 +79,31 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         productItem = (ProductItem) getIntent().getSerializableExtra("productItem");
         productItemList = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productList");
-        initPosition = getIntent().getExtras().getInt("initPosition");
+        realPosition = initPosition = getIntent().getExtras().getInt("initPosition");
         positionCount = getIntent().getExtras().getInt("positionCount");
 
-        initUI();
-        mCoverFlow.setAdapter(new CoverFlowAdapter(FavoritesCoverFlowActivity.this, 0, productItemList));
+        generateData(realPosition);
+        adapter = new CoverFlowAdapter(FavoritesCoverFlowActivity.this, 0, data);
 
+        initUI();
+
+        mCoverFlow.setAdapter(adapter);
         mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                productItem = productItemList.get(position);
+                realPosition = (realPosition + position - 2 + positionCount) % positionCount;
+                productItem = productItemList.get(realPosition);
+                Log.i("mCoverFlow", "realPosition = " + realPosition);
                 mTitle.setText(productItem.getTitle());
-                Log.i("FavoritesCover", "position = " + position);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null) {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
                 } else {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
+                generateData(realPosition);
+                mCoverFlow.setAdapter(adapter);
+                mCoverFlow.clearCache();
             }
 
             @Override
@@ -198,13 +209,13 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         //TODO: Bug fix, initPosition==0
-        if(initPosition == 0) {
-            Log.i("mCoverFlow", "position = " + initPosition);
-            mCoverFlow.scrollToPosition(initPosition + positionCount);
-        } else {
-            mCoverFlow.scrollToPosition(initPosition);
-            Log.i("mCoverFlow", "position = " + initPosition);
-        }
+//        if(initPosition == 0) {
+//            Log.i("mCoverFlow", "position = " + initPosition);
+//            mCoverFlow.scrollToPosition(initPosition + positionCount);
+//        } else {
+//            mCoverFlow.scrollToPosition(initPosition);
+//            Log.i("mCoverFlow", "position = " + initPosition);
+//        }
     }
 
     @Override
@@ -217,5 +228,19 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         mDataBaseManager.close();
+    }
+
+    private void generateData(int index) {
+        if (productItemList.size() <= 10) {
+            data = productItemList;
+        } else {
+            data.clear();
+            int tmp = index + productItemList.size();
+            data.add(productItemList.get((tmp - 2) % productItemList.size()));
+            data.add(productItemList.get((tmp - 1) % productItemList.size()));
+            data.add(productItemList.get(tmp % productItemList.size()));
+            data.add(productItemList.get((tmp + 1) % productItemList.size()));
+            data.add(productItemList.get((tmp + 2) % productItemList.size()));
+        }
     }
 }
