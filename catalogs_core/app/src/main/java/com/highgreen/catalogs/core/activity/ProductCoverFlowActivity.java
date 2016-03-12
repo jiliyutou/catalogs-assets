@@ -97,7 +97,7 @@ public class ProductCoverFlowActivity extends FragmentActivity {
             @Override
             public void onScrolledToPosition(int position) {
                 realPosition = (realPosition + position - 2 + positionCount) % positionCount;
-                productItem = data.get(realPosition);
+                productItem = productItemList.get(realPosition);
                 mTitle.setText(productItem.getTitle());
                 Log.i("mCoverFlow", "realPosition = " + realPosition);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
