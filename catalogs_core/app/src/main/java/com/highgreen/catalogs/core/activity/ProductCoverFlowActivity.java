@@ -50,6 +50,11 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     private TextSwitcher mTitle;
     private int initPosition;
     private int positionCount;
+    private int realPosition;
+
+    private CoverFlowAdapter adapter;
+    private ArrayList<ProductItem> productItemList = null;
+    private ArrayList<ProductItem> data = new ArrayList<ProductItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,26 +80,33 @@ public class ProductCoverFlowActivity extends FragmentActivity {
         mTitle.setOutAnimation(out);
 
         Bundle bundle = getIntent().getExtras();
-        final ArrayList<ProductItem> data = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
         String title = bundle.getString("title");
-        initPosition = bundle.getInt("initPosition");
+        productItemList = (ArrayList<ProductItem>) getIntent().getSerializableExtra("productItemList");
+        realPosition = initPosition = bundle.getInt("initPosition");
         positionCount = bundle.getInt("positionCount");
+        generateData(realPosition);
+        adapter = new CoverFlowAdapter(ProductCoverFlowActivity.this, 0, data);
+
         initUI(title);
 
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
-        mCoverFlow.setAdapter(new CoverFlowAdapter(ProductCoverFlowActivity.this, 0, data));
+        mCoverFlow.setAdapter(adapter);
         mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                productItem = data.get(position);
+                realPosition = (realPosition + position - 2 + positionCount) % positionCount;
+                productItem = productItemList.get(realPosition);
                 mTitle.setText(productItem.getTitle());
-                Log.i("mCoverFlow", "position = " + position);
+                Log.i("mCoverFlow", "realPosition = " + realPosition);
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null) {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.favorite_btn));
                 } else {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
+                generateData(realPosition);
+                mCoverFlow.setAdapter(adapter);
+                mCoverFlow.clearCache();
             }
 
             @Override
@@ -209,13 +221,26 @@ public class ProductCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         //TODO: Bug fix, initPosition==0
-        if (initPosition == 0) {
-            Log.i("mCoverFlow", "position = " + initPosition);
-            mCoverFlow.scrollToPosition(initPosition + positionCount);
-        } else {
-            mCoverFlow.scrollToPosition(initPosition);
-            Log.i("mCoverFlow", "position = " + initPosition);
-        }
+//        if (initPosition == 0) {
+//            Log.i("mCoverFlow", "position = " + initPosition);
+//            mCoverFlow.scrollToPosition(initPosition + positionCount);
+//        } else {
+//            mCoverFlow.scrollToPosition(initPosition);
+//            Log.i("mCoverFlow", "position = " + initPosition);
+//        }
     }
 
+    private void generateData(int index) {
+        if (productItemList.size() <= 10) {
+            data = productItemList;
+        } else {
+            data.clear();
+            int tmp = index + productItemList.size();
+            data.add(productItemList.get((tmp - 2) % productItemList.size()));
+            data.add(productItemList.get((tmp - 1) % productItemList.size()));
+            data.add(productItemList.get(tmp % productItemList.size()));
+            data.add(productItemList.get((tmp + 1) % productItemList.size()));
+            data.add(productItemList.get((tmp + 2) % productItemList.size()));
+        }
+    }
 }
