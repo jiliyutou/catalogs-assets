@@ -2,19 +2,19 @@
     "categories" : [
         {
             "name" : "简欧风格",
-            "directory" : "简欧风格",
+            "directory" : "jianou",
             "thumbnail" : "YJJ-025.jpg"
         },
 
         {
             "name" : "欧式风格",
-            "directory" : "欧式风格",
+            "directory" : "oushi",
             "thumbnail" : "YJJ-001.jpg"
         },
 
         {
             "name" : "现代风格",
-            "directory" : "现代风格",
+            "directory" : "xiandai",
             "thumbnail" : "YJJ-048.jpg"
         }
     ]
