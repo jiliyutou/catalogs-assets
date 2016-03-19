@@ -2,7 +2,7 @@
 - Android project for displaying images from UPYUN origin
 
 ## Release Notes
-### v2.0.0
+### v1.2.0
 - 点击联系人栏发送邮件、电话的功能
 - 修复密码重复登录的bug
 - 修复coverflow页面跳转的bug
