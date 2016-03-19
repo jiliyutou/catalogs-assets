@@ -7,9 +7,9 @@
         android:id="@+id/grid_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:contentDescription="Image"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerInside"
+        android:padding="5dp"
+        android:background="@drawable/cover_grid_item" />
     <TextView
         android:id="@+id/product_title"
         android:textAlignment="center"

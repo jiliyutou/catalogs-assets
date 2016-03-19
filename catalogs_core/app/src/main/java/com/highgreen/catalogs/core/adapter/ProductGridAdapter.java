@@ -41,9 +41,6 @@ public class ProductGridAdapter extends ArrayAdapter<ProductItem> {
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
-                .bitmapConfig(Bitmap.Config.ARGB_8888)
-                .displayer(new RoundedBitmapDisplayer(10))
-                //.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
                 .build();
     }
 
@@ -56,7 +53,8 @@ public class ProductGridAdapter extends ArrayAdapter<ProductItem> {
             convertView = LayoutInflater.from(mContext).inflate(resource, null);
             holder.image = (ImageView) convertView.findViewById(R.id.grid_image);
             holder.title = (TextView) convertView.findViewById(R.id.product_title);
-            holder.image.setLayoutParams(new LinearLayout.LayoutParams(MainApplication.screen_width/2-40, MainApplication.screen_width/2-40));
+            holder.image.setLayoutParams(new LinearLayout.LayoutParams(MainApplication.screen_width / 2 - 40, MainApplication.screen_width / 2 - 40));
+            holder.image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
             convertView.setTag(holder);
         } else {
