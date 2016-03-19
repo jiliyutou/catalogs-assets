@@ -125,10 +125,9 @@ public class NewProductGridActivity extends Activity {
                         ProductItem item = data.get(position);
                         Intent intent = new Intent(NewProductGridActivity.this, ProductCoverFlowActivity.class);
                         intent.putExtra("title", "Back");
-                        intent.putExtra("item_name", item.getTitle());
-                        intent.putExtra("currentPath", currentPath);
-                        intent.putExtra("httpHeader", httpHeader);
                         intent.putExtra("productItemList", (Serializable) data);
+                        intent.putExtra("initPosition", position);
+                        intent.putExtra("positionCount", data.size());
                         startActivity(intent);
                     }
                 });
