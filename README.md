@@ -1,6 +1,14 @@
 ## catalogs-assets discription
 - Android project for displaying images from UPYUN origin
 
+## Release Notes
+### v2.0.0
+- 点击联系人栏发送邮件、电话的功能
+- 修复密码重复登录的bug
+- 修复coverflow页面跳转的bug
+- 修复coverflow页面加载全部图片内存溢出的bug
+- 重新制作圆角图片，修复缩略图变形的bug
+
 ## Features
 - 登录的超级权限密码
 - 每个随机密码只使用验证一次
@@ -13,18 +21,19 @@
 
 ## JSON file
 - categories.json：用于保存upyun上目录和缩略图的映射关系，由业务方提供
+- directory 为upyun上的文件夹名称，不允许有空格
 ```
 {
     "categories" : [
         {
         "name" : "Basin mixer",
-        "directory" : "Basin mixer",
+        "directory" : "Basin_mixer",
         "thumbnail" : "Basin mixer.jpg",
         "number": 20
         },
         {
         "name" : "Kitchen mixer",
-        "directory" : "Kitchen mixer",
+        "directory" : "Kitchen_mixer",
         "thumbnail" : "Kitchen mixer.jpg",
         "number": 16
         }
@@ -49,7 +58,7 @@
                     "paramValue": "0577-86374678"
                 },
                 {
-                    "paramKey": "Moblie",
+                    "paramKey": "Mobile",
                     "paramValue": "15158133123"
                 }
             ]
@@ -62,7 +71,7 @@
                     "paramValue": "allen@gmail.com"
                 },
                 {
-                    "paramKey": "Moblie",
+                    "paramKey": "Mobile",
                     "paramValue": "15158111123"
                 },
                  {
