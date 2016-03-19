@@ -37,6 +37,8 @@ import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
  */
 public class FavoritesCoverFlowActivity extends FragmentActivity {
 
+    private static int CACHED_IMAGE_LIMIT = 6;
+
     private FeatureCoverFlow mCoverFlow;
     private ProductItem productItem;
 
@@ -90,9 +92,17 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
         mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                realPosition = (realPosition + position - 2 + positionCount) % positionCount;
-                productItem = productItemList.get(realPosition);
-                Log.i("FavoritesCover", "realPosition = " + realPosition);
+                if(productItemList.size() <= CACHED_IMAGE_LIMIT) {
+                    productItem = productItemList.get(position);
+                    Log.i("mCoverFlow", "position in productItemList = " + position);
+                } else {    //cached mode enabled
+                    realPosition = (realPosition - 2 + position + positionCount) % positionCount;
+                    productItem = productItemList.get(realPosition);
+                    Log.i("mCoverFlow", "realPosition in productItemList = " + realPosition);
+                    generateData(realPosition);
+                    mCoverFlow.setAdapter(adapter);
+                    mCoverFlow.clearCache();
+                }
                 mTitle.setText(productItem.getTitle());
                 ProductItem item = mDataBaseManager.queryByUrl(productItem.getImageUrl());
                 if (item != null) {
@@ -100,9 +110,6 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
                 } else {
                     favorite.setImageDrawable(getResources().getDrawable(R.mipmap.unfavorite_btn));
                 }
-                generateData(realPosition);
-                mCoverFlow.setAdapter(adapter);
-                mCoverFlow.clearCache();
             }
 
             @Override
@@ -208,19 +215,18 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         //TODO: Bug fix, initPosition==0
-//        if (initPosition == 0) {
-//            Log.i("mCoverFlow", "position = " + initPosition);
-//            mCoverFlow.scrollToPosition(initPosition + positionCount);
-//        } else {
-//            mCoverFlow.scrollToPosition(initPosition);
-//            Log.i("mCoverFlow", "position = " + initPosition);
-//        }
+        if(productItemList.size() <= CACHED_IMAGE_LIMIT) {
+            if (initPosition == 0) {
+                mCoverFlow.scrollToPosition(initPosition + positionCount);
+            } else {
+                mCoverFlow.scrollToPosition(initPosition);
+            }
+        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        mDataBaseManager.close();
     }
 
     @Override
@@ -230,9 +236,9 @@ public class FavoritesCoverFlowActivity extends FragmentActivity {
     }
 
     private void generateData(int index) {
-        if (productItemList.size() <= 10) {
+        if (productItemList.size() <= CACHED_IMAGE_LIMIT) {
             data = productItemList;
-        } else {
+        } else {    //cached mode enabled
             data.clear();
             int tmp = index + productItemList.size();
             data.add(productItemList.get((tmp - 2) % productItemList.size()));
