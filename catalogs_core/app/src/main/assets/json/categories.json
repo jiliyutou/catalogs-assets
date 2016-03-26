@@ -3,31 +3,31 @@
         {
             "name" : "Economic-hand-dryer",
             "directory" : "Economic-hand-dryer",
-            "thumbnail" : "K1005-Polished.jpg"
+            "thumbnail" : "K1005-Polished1.jpg"
         },
 
         {
             "name" : "Double-side-jet-hand-dryer",
             "directory" : "Double-side-jet-hand-dryer",
-            "thumbnail" : "K2-white.jpg"
+            "thumbnail" : "K2-white1.jpg"
         },
 
         {
             "name" : "Stainlees-steel-high-power-hand-dryer",
             "directory" : "Stainlees-steel-high-power-hand-dryer",
-            "thumbnail" : "K2503A-K-polished.jpg"
+            "thumbnail" : "K2503A-K-polished1.jpg"
         },
 
         {
             "name" : "Stainlees-steel-high-speed-hand-dryer",
             "directory" : "Stainlees-steel-high-speed-hand-dryer",
-            "thumbnail" : "K2008-Polished.jpg"
+            "thumbnail" : "K2008-Polished1.jpg"
         },
 
         {
             "name" : "Baby-changing-station-and-protection-seat",
             "directory" : "Baby-changing-station-and-protection-seat",
-            "thumbnail" : "8001A-ricewhite.jpg"
+            "thumbnail" : "8001A-ricewhite1.jpg"
         }
     ]
 }
