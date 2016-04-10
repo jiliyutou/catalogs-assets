@@ -1,6 +1,471 @@
 {
   "categories" : [
     {
+      "name" : "MY1002X",
+      "directory" : "MY1002X",
+      "thumbnail" : "MY1002.jpg"
+    },
+
+    {
+      "name" : "MY1031X",
+      "directory" : "MY1031X",
+      "thumbnail" : "MY1031.jpg"
+    },
+
+    {
+      "name" : "MY2701X",
+      "directory" : "MY2701X",
+      "thumbnail" : "MY2701.jpg"
+    },
+
+    {
+      "name" : "MY2702X",
+      "directory" : "MY2702X",
+      "thumbnail" : "MY2702.jpg"
+    },
+
+    {
+      "name" : "MY2703X",
+      "directory" : "MY2703X",
+      "thumbnail" : "MY2703.jpg"
+    },
+    {
+      "name" : "MY2704X",
+      "directory" : "MY2704X",
+      "thumbnail" : "MY2704.jpg"
+    },
+
+    {
+      "name" : "MY2705X",
+      "directory" : "MY2705X",
+      "thumbnail" : "MY2705.jpg"
+    },
+
+    {
+      "name" : "MY2706X",
+      "directory" : "MY2706X",
+      "thumbnail" : "MY2706.jpg"
+    },
+
+    {
+      "name" : "MY2707X",
+      "directory" : "MY2707X",
+      "thumbnail" : "MY2707.jpg"
+    },
+
+    {
+      "name" : "MY2708X",
+      "directory" : "MY2708X",
+      "thumbnail" : "MY2708.jpg"
+    },
+    {
+      "name" : "MY2709X",
+      "directory" : "MY2709X",
+      "thumbnail" : "MY2709.jpg"
+    },
+
+    {
+      "name" : "MY2710X",
+      "directory" : "MY2710X",
+      "thumbnail" : "MY2710.jpg"
+    },
+
+    {
+      "name" : "MY2711X",
+      "directory" : "MY2711X",
+      "thumbnail" : "MY2711.jpg"
+    },
+
+    {
+      "name" : "MY2712X",
+      "directory" : "MY2712X",
+      "thumbnail" : "MY2712.jpg"
+    },
+
+    {
+      "name" : "MY2713X",
+      "directory" : "MY2713X",
+      "thumbnail" : "MY2713.jpg"
+    },
+    {
+      "name" : "MY2714X",
+      "directory" : "MY2714X",
+      "thumbnail" : "MY2714.jpg"
+    },
+
+    {
+      "name" : "MY2715X",
+      "directory" : "MY2715X",
+      "thumbnail" : "MY2715.jpg"
+    },
+
+    {
+      "name" : "MY2716X",
+      "directory" : "MY2716X",
+      "thumbnail" : "MY2716.jpg"
+    },
+
+    {
+      "name" : "MY2717X",
+      "directory" : "MY2717X",
+      "thumbnail" : "MY2717.jpg"
+    },
+
+    {
+      "name" : "MY2718X",
+      "directory" : "MY2718X",
+      "thumbnail" : "MY2718.jpg"
+    },
+    {
+      "name" : "MY2719X",
+      "directory" : "MY2719X",
+      "thumbnail" : "MY2719.jpg"
+    },
+
+    {
+      "name" : "MY2720X",
+      "directory" : "MY2720X",
+      "thumbnail" : "MY2720.jpg"
+    },
+
+    {
+      "name" : "MY2721X",
+      "directory" : "MY2721X",
+      "thumbnail" : "MY2721.jpg"
+    },
+
+    {
+      "name" : "MY2722X",
+      "directory" : "MY2722X",
+      "thumbnail" : "MY2722.jpg"
+    },
+
+    {
+      "name" : "MY2811X",
+      "directory" : "MY2811X",
+      "thumbnail" : "MY2811.jpg"
+    },
+    {
+      "name" : "MY3031X",
+      "directory" : "MY3031X",
+      "thumbnail" : "MY3031.jpg"
+    },
+
+    {
+      "name" : "MY5003X",
+      "directory" : "MY5003X",
+      "thumbnail" : "MY5003.jpg"
+    },
+
+    {
+      "name" : "MY5004X",
+      "directory" : "MY5004X",
+      "thumbnail" : "MY5004.jpg"
+    },
+
+    {
+      "name" : "MY5005X",
+      "directory" : "MY5005X",
+      "thumbnail" : "MY5005.jpg"
+    },
+
+    {
+      "name" : "MY5006X",
+      "directory" : "MY5006X",
+      "thumbnail" : "MY5006.jpg"
+    },
+    {
+      "name" : "MY5104X",
+      "directory" : "MY5104X",
+      "thumbnail" : "MY5104.jpg"
+    },
+
+    {
+      "name" : "MY7701X",
+      "directory" : "MY7701X",
+      "thumbnail" : "MY7701.jpg"
+    },
+
+    {
+      "name" : "MY7702X",
+      "directory" : "MY7702X",
+      "thumbnail" : "MY7702.jpg"
+    },
+
+    {
+      "name" : "MY7703X",
+      "directory" : "MY7703X",
+      "thumbnail" : "MY7703.jpg"
+    },
+
+    {
+      "name" : "MY7704X",
+      "directory" : "MY7704X",
+      "thumbnail" : "MY7704.jpg"
+    },
+    {
+      "name" : "MY7705X",
+      "directory" : "MY7705X",
+      "thumbnail" : "MY7705.jpg"
+    },
+
+    {
+      "name" : "MY7706X",
+      "directory" : "MY7706X",
+      "thumbnail" : "MY7706.jpg"
+    },
+
+    {
+      "name" : "MY7707X",
+      "directory" : "MY7707X",
+      "thumbnail" : "MY7707.jpg"
+    },
+
+    {
+      "name" : "MY7708X",
+      "directory" : "MY7708X",
+      "thumbnail" : "MY7708.jpg"
+    },
+
+    {
+      "name" : "MY7709X",
+      "directory" : "MY7709X",
+      "thumbnail" : "MY7709.jpg"
+    },
+    {
+      "name" : "MY7710X",
+      "directory" : "MY7710X",
+      "thumbnail" : "MY7710.jpg"
+    },
+
+    {
+      "name" : "MY7711X",
+      "directory" : "MY7711X",
+      "thumbnail" : "MY7711.jpg"
+    },
+
+    {
+      "name" : "MY7712X",
+      "directory" : "MY7712X",
+      "thumbnail" : "MY7712.jpg"
+    },
+
+    {
+      "name" : "MY7713X",
+      "directory" : "MY7713X",
+      "thumbnail" : "MY7713.jpg"
+    },
+
+    {
+      "name" : "MY7714X",
+      "directory" : "MY7714X",
+      "thumbnail" : "MY7714.jpg"
+    },
+    {
+      "name" : "MY7715X",
+      "directory" : "MY7715X",
+      "thumbnail" : "MY7715.jpg"
+    },
+
+    {
+      "name" : "MY7716X",
+      "directory" : "MY7716X",
+      "thumbnail" : "MY7716.jpg"
+    },
+
+    {
+      "name" : "MY7717X",
+      "directory" : "MY7717X",
+      "thumbnail" : "MY7717.jpg"
+    },
+
+    {
+      "name" : "MY7718X",
+      "directory" : "MY7718X",
+      "thumbnail" : "MY7718.jpg"
+    },
+
+    {
+      "name" : "MY7719X",
+      "directory" : "MY7719X",
+      "thumbnail" : "MY7719.jpg"
+    },
+    {
+      "name" : "MY8016X",
+      "directory" : "MY8016X",
+      "thumbnail" : "MY8016.jpg"
+    },
+
+    {
+      "name" : "MY8017X",
+      "directory" : "MY8017X",
+      "thumbnail" : "MY8017.jpg"
+    },
+
+    {
+      "name" : "MY8022X",
+      "directory" : "MY8022X",
+      "thumbnail" : "MY8022.jpg"
+    },
+
+    {
+      "name" : "MY8221X",
+      "directory" : "MY8221X",
+      "thumbnail" : "Athens.jpg"
+    },
+
+    {
+      "name" : "MY8833X",
+      "directory" : "MY8833X",
+      "thumbnail" : "MY8833.jpg"
+    },
+
+    {
+      "name" : "MY8905X",
+      "directory" : "MY8905X",
+      "thumbnail" : "MY8905.jpg"
+    },
+
+    {
+      "name" : "MY8950X",
+      "directory" : "MY8950X",
+      "thumbnail" : "MY8950.jpg"
+    },
+
+    {
+      "name" : "MY9873X",
+      "directory" : "MY9873X",
+      "thumbnail" : "MY9873.jpg"
+    },
+
+    {
+      "name" : "MY9889X",
+      "directory" : "MY9889X",
+      "thumbnail" : "MY9889.jpg"
+    },
+    {
+      "name" : "MY9909X",
+      "directory" : "MY9909X",
+      "thumbnail" : "MY9909.jpg"
+    },
+
+    {
+      "name" : "MY10314X",
+      "directory" : "MY10314X",
+      "thumbnail" : "MY10314.jpg"
+    },
+
+    {
+      "name" : "MY27231X",
+      "directory" : "MY27231X",
+      "thumbnail" : "MY27231.jpg"
+    },
+
+   
+    {
+      "name" : "MY71234X",
+      "directory" : "MY71234X",
+      "thumbnail" : "MY71234.jpg"
+    },
+
+    {
+      "name" : "MY103140X",
+      "directory" : "MY103140X",
+      "thumbnail" : "MY103140.jpg"
+    },
+
+    {
+      "name" : "MY_shower_set",
+      "directory" : "MY_shower_set",
+      "thumbnail" : "MY_shower_set.jpg"
+    },
+
+    {
+      "name" : "MY_K101",
+      "directory" : "MY_K101",
+      "thumbnail" : "MY_K101.jpg"
+    },
+
+    {
+      "name" : "MY_K201",
+      "directory" : "MY_K201",
+      "thumbnail" : "MY_K201.jpg"
+    },
+
+    {
+      "name" : "MY_K301",
+      "directory" : "MY_K301",
+      "thumbnail" : "MY_K301.jpg"
+    },
+
+    {
+      "name" : "MY0405",
+      "directory" : "MY0405",
+      "thumbnail" : "MY0405.jpg"
+    },
+
+    {
+      "name" : "MY1256",
+      "directory" : "MY1256",
+      "thumbnail" : "MY1256.jpg"
+    },
+
+    {
+      "name" : "MY1556",
+      "directory" : "MY1556",
+      "thumbnail" : "MY1556.jpg"
+    },
+
+    {
+      "name" : "MY2012",
+      "directory" : "MY2012",
+      "thumbnail" : "MY2012.jpg"
+    },
+
+    {
+      "name" : "MY2012b",
+      "directory" : "MY2012b",
+      "thumbnail" : "MY2012b.jpg"
+    },
+
+    {
+      "name" : "MY3555",
+      "directory" : "MY3555",
+      "thumbnail" : "MY3555.jpg"
+    },
+
+
+    {
+      "name" : "MY4701",
+      "directory" : "MY4701",
+      "thumbnail" : "MY4701.jpg"
+    },
+
+    {
+      "name" : "MY4801",
+      "directory" : "MY4801",
+      "thumbnail" : "MY4801.jpg"
+    },
+
+    {
+      "name" : "MY6803",
+      "directory" : "MY6803",
+      "thumbnail" : "MY6803.jpg"
+    },
+
+    {
+      "name" : "MY8668",
+      "directory" : "MY8668",
+      "thumbnail" : "MY8668.jpg"
+    },
+
+    {
+      "name" : "MY62017",
+      "directory" : "MY62017",
+      "thumbnail" : "MY62017.jpg"
+    },
+
+    {
       "name" : "Basin mixer",
       "directory" : "Basin_mixer",
       "thumbnail" : "Basin mixer.jpg"
@@ -908,5 +1373,7 @@
 
   ]
 }
+
+
 
 
