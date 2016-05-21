@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,9 +21,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.highgreen.catalogs.core.MainApplication;
 import com.highgreen.catalogs.core.R;
+import com.highgreen.catalogs.core.adapter.CategoryItemAdapter;
 import com.highgreen.catalogs.core.bean.Category;
 import com.highgreen.catalogs.core.bean.CategoryItem;
-import com.highgreen.catalogs.core.adapter.CategoryItemAdapter;
 import com.highgreen.catalogs.core.utils.JsonUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -91,6 +92,18 @@ public class CategoryActivity extends Activity {
 
         TextView middle_text_title = (TextView) findViewById(R.id.middle_text_title);
         middle_text_title.setText(R.string.category_title);
+
+        Button searchButton = (Button) findViewById(R.id.languageButton);
+        searchButton.setText(R.string.search_text);
+        searchButton.setVisibility(View.VISIBLE);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchIntent = new Intent(CategoryActivity.this, ProductSearchActivity.class);
+                startActivity(searchIntent);
+            }
+        });
     }
 
     public class CategoryListAdapter extends ArrayAdapter<CategoryItem> {

@@ -49,6 +49,8 @@
 
         <activity android:name="com.highgreen.catalogs.core.activity.CompanyProfileActivity"/>
 
+        <activity android:name="com.highgreen.catalogs.core.activity.ProductSearchActivity" />
+
         <!-- not used yet -->
         <activity android:name="com.highgreen.catalogs.core.activity.ContactActivity"/>
 
